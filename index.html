@@ -6,8 +6,8 @@
   <title>VOZON | Premium E-waste Disposal & Recycling</title>
   <meta name="description" content="Leading e-waste recycling company in Pune. Secure, sustainable, and responsible disposal for IT companies, corporate offices, and enterprises.">
   
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syne:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Fonts - Updated with Poppins font style -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -17,13 +17,13 @@
   
   <style>
     :root {
-      --green: #00C896;
-      --green-dark: #009970;
-      --green-light: #E6FFF7;
-      --ink: #0A0F0D;
-      --ink-soft: #1C2B25;
-      --mist: #F4FAF7;
-      --slate: #64757A;
+      --green: #90CC0B;        /* Logo primary green */
+      --green-dark: #7AAE09;   /* Slightly darker green for hover/gradients */
+      --green-light: #F2F9E6;  /* Light tint based on logo green */
+      --ink: #151616;          /* Logo dark text color */
+      --ink-soft: #2A2E2E;
+      --mist: #F6F9F0;
+      --slate: #5A6B5A;
       --white: #FFFFFF;
       --accent: #FFD166;
       --accent2: #06AED5;
@@ -34,32 +34,14 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: var(--white);
       color: var(--ink);
       overflow-x: hidden;
     }
 
-    .font-display { font-family: 'Syne', sans-serif; }
+    .font-display { font-family: 'Poppins', sans-serif; font-weight: 700; }
     .font-mono-custom { font-family: 'Fira Code', monospace; }
-
-    /* Custom Cursor */
-    .custom-cursor {
-      width: 10px; height: 10px;
-      background: var(--green);
-      border-radius: 50%;
-      position: fixed; pointer-events: none; z-index: 9999;
-      transition: transform 0.1s ease;
-      box-shadow: 0 0 16px var(--green);
-    }
-    .cursor-dot {
-      width: 32px; height: 32px;
-      border: 1.5px solid var(--green);
-      border-radius: 50%;
-      position: fixed; pointer-events: none; z-index: 9998;
-      transition: 0.15s ease-out; opacity: 0.5;
-    }
-    @media (max-width: 768px) { .custom-cursor, .cursor-dot { display: none; } }
 
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--mist); }
@@ -87,12 +69,13 @@
     #navbar {
       position: fixed; top: 0; width: 100%; z-index: 50;
       background: rgba(255,255,255,0.96); backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(0,200,150,0.12);
+      border-bottom: 1px solid rgba(144,204,11,0.12);
       transition: all 0.4s;
     }
     .nav-link { 
       position: relative; font-weight: 500; color: var(--ink-soft);
       transition: color 0.25s;
+      font-family: 'Poppins', sans-serif;
     }
     .nav-link:hover { color: var(--green); }
     .nav-link.active { color: var(--green); }
@@ -109,11 +92,11 @@
       font-family: 'Fira Code', monospace;
     }
     .pill-dark {
-      background: rgba(0,200,150,0.15); color: var(--green);
+      background: rgba(144,204,11,0.15); color: var(--green);
     }
 
     .hero-bg {
-      background: linear-gradient(135deg, #F0FDF8 0%, #E8FAF4 50%, #F0F9FF 100%);
+      background: linear-gradient(135deg, #F8FCEF 0%, #F0F8E6 50%, #F0F9FF 100%);
     }
     .hero-blob {
       position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0;
@@ -128,30 +111,30 @@
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     .marquee-item {
       display: flex; align-items: center; gap: 10px;
-      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
-      color: var(--green-dark); white-space: nowrap;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem;
+      color: white; white-space: nowrap;
     }
-    .marquee-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+    .marquee-dot { width: 6px; height: 6px; background: rgba(255,255,255,0.6); border-radius: 50%; }
 
     .card-base {
       background: var(--white); border-radius: 20px;
-      border: 1px solid rgba(0,200,150,0.14);
+      border: 1px solid rgba(144,204,11,0.14);
       transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
       overflow: hidden;
     }
     .card-base:hover {
       border-color: var(--green);
-      box-shadow: 0 20px 48px rgba(0,200,150,0.14), 0 2px 8px rgba(0,0,0,0.04);
+      box-shadow: 0 20px 48px rgba(144,204,11,0.14), 0 2px 8px rgba(0,0,0,0.04);
       transform: translateY(-6px);
     }
     .card-dark {
       background: var(--ink-soft); border-radius: 20px;
-      border: 1px solid rgba(0,200,150,0.18);
+      border: 1px solid rgba(144,204,11,0.18);
       transition: all 0.3s ease;
     }
     .card-dark:hover {
       border-color: var(--green);
-      box-shadow: 0 12px 36px rgba(0,200,150,0.2);
+      box-shadow: 0 12px 36px rgba(144,204,11,0.2);
       transform: translateY(-4px);
     }
     .card-image-overlay {
@@ -162,7 +145,7 @@
     .card-image-overlay:hover img { transform: scale(1.06); }
     .card-image-overlay .overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,15,13,0.85) 0%, transparent 60%);
+      background: linear-gradient(to top, rgba(21,22,22,0.85) 0%, transparent 60%);
       display: flex; align-items: flex-end; padding: 1.5rem;
     }
 
@@ -181,15 +164,15 @@
     }
 
     .stat-number {
-      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-family: 'Poppins', sans-serif; font-weight: 800;
       font-size: 2.8rem; color: var(--green); line-height: 1;
     }
 
     .step-bubble {
       width: 52px; height: 52px; border-radius: 50%;
-      background: var(--white); border: 2px solid rgba(0,200,150,0.3);
+      background: var(--white); border: 2px solid rgba(144,204,11,0.3);
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Syne', sans-serif; font-weight: 800; color: var(--ink);
+      font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--ink);
       transition: all 0.4s;
     }
 
@@ -202,18 +185,18 @@
     .back-to-top.visible { opacity: 1; visibility: visible; }
 
     input, textarea, select {
-      background: var(--mist); border: 1.5px solid rgba(0,200,150,0.2);
+      background: var(--mist); border: 1.5px solid rgba(144,204,11,0.2);
       color: var(--ink); border-radius: 12px;
-      font-family: 'DM Sans', sans-serif; transition: 0.25s;
+      font-family: 'Poppins', sans-serif; transition: 0.25s;
     }
     input:focus, textarea:focus {
       outline: none; border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(0,200,150,0.12);
+      box-shadow: 0 0 0 3px rgba(144,204,11,0.12);
       background: white;
     }
 
     .banner-strip {
-      background: linear-gradient(135deg, var(--green-dark) 0%, #00A07A 50%, var(--green) 100%);
+      background: linear-gradient(135deg, var(--green-dark) 0%, #7AAE09 50%, var(--green) 100%);
       position: relative; overflow: hidden;
     }
 
@@ -224,12 +207,12 @@
 
     .testimonial-card {
       background: var(--white); border-radius: 20px;
-      border: 1px solid rgba(0,200,150,0.15);
+      border: 1px solid rgba(144,204,11,0.15);
       min-width: 320px; transition: all 0.3s ease;
     }
     .testimonial-card:hover {
       border-color: var(--green);
-      box-shadow: 0 16px 40px rgba(0,200,150,0.1);
+      box-shadow: 0 16px 40px rgba(144,204,11,0.1);
       transform: translateY(-4px);
     }
 
@@ -247,7 +230,13 @@
       display: inline-flex; align-items: center; justify-content: center;
       width: 28px; height: 28px; border-radius: 8px;
       background: var(--green); color: white;
-      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.75rem;
+      font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.75rem;
+    }
+
+    /* Global heading font override */
+    h1, h2, h3, h4, h5, .font-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
     }
   </style>
 </head>
@@ -259,8 +248,6 @@
 
   <div class="scroll-progress" id="progressBar"></div>
 
-  <div class="custom-cursor hidden md:block"></div>
-  <div class="cursor-dot hidden md:block"></div>
 
   <nav id="navbar" class="py-4 px-6 md:px-12">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
@@ -281,7 +268,7 @@
         <a href="tel:+918600726007" class="text-sm font-medium" style="color:var(--slate)">
           <i class="fas fa-phone-alt mr-1" style="color:var(--green)"></i>+91 86007 26007
         </a>
-        <a href="#quote" class="px-5 py-2.5 rounded-xl text-sm font-bold text-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5" style="background:linear-gradient(135deg,var(--green-dark),var(--green));box-shadow:0 4px 16px rgba(0,200,150,0.3)">
+        <a href="#quote" class="px-5 py-2.5 rounded-xl text-sm font-bold text-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5" style="background:linear-gradient(135deg,var(--green-dark),var(--green));box-shadow:0 4px 16px rgba(144,204,11,0.3)">
           Get Quote →
         </a>
       </div>
@@ -302,14 +289,14 @@
   <main>
     <!-- HERO SECTION -->
     <section id="home" class="relative min-h-screen flex items-center pt-24 overflow-hidden hero-bg">
-      <div class="hero-blob blob-anim" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,200,150,0.12),transparent 70%);top:-100px;left:-150px;"></div>
+      <div class="hero-blob blob-anim" style="width:500px;height:500px;background:radial-gradient(circle,rgba(144,204,11,0.12),transparent 70%);top:-100px;left:-150px;"></div>
       <div class="hero-blob blob-anim" style="width:400px;height:400px;background:radial-gradient(circle,rgba(6,174,213,0.09),transparent 70%);bottom:-80px;right:-120px;animation-delay:4s"></div>
 
       <div class="max-w-7xl mx-auto px-6 md:px-12 z-10 w-full">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
           <div class="hero-content">
             <div class="pill mb-6"><span>●</span> India's #1 E-Waste Recycler — Pune</div>
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.06]" style="font-family:'Syne',sans-serif">
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.06]" style="font-family:'Poppins',sans-serif">
               Recycle.<br>
               <span class="grad-text">Reclaim.</span><br>
               Renew.
@@ -317,7 +304,7 @@
             <p class="mt-6 text-lg leading-relaxed max-w-md" style="color:var(--slate)">Embrace the e-Waste Revolution. Join the movement for secure, sustainable, and certified electronic waste disposal.</p>
 
             <div class="flex flex-wrap gap-3 mt-8">
-              <a href="#quote" class="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white text-sm transition-all hover:-translate-y-0.5" style="background:linear-gradient(135deg,var(--green-dark),var(--green));box-shadow:0 6px 20px rgba(0,200,150,0.3)">
+              <a href="#quote" class="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white text-sm transition-all hover:-translate-y-0.5" style="background:linear-gradient(135deg,var(--green-dark),var(--green));box-shadow:0 6px 20px rgba(144,204,11,0.3)">
                 <i class="fas fa-calendar-check"></i> Schedule Pickup
               </a>
               <a href="#contact" class="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm transition-all border-2" style="border-color:var(--green);color:var(--green)">
@@ -330,29 +317,29 @@
 
   <!-- HERO STATS - BETTER SPACING -->
 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mt-12 pt-8" 
-     style="border-top:1px solid rgba(0,200,150,0.15)">
+     style="border-top:1px solid rgba(144,204,11,0.15)">
   
   <div class="text-center">
     <div class="stat-number counter text-[28px] md:text-4xl font-bold leading-none" 
-         data-target="12500" style="font-family:'Syne',sans-serif;color:var(--green)">0</div>
+         data-target="12500" style="font-family:'Poppins',sans-serif;color:var(--green)">0</div>
     <p class="text-xs mt-3 font-medium" style="color:var(--slate)">Tons Recycled</p>
   </div>
 
   <div class="text-center">
     <div class="stat-number counter text-[28px] md:text-4xl font-bold leading-none" 
-         data-target="580" style="font-family:'Syne',sans-serif;color:var(--green)">0</div>
+         data-target="580" style="font-family:'Poppins',sans-serif;color:var(--green)">0</div>
     <p class="text-xs mt-3 font-medium" style="color:var(--slate)">Corp Clients</p>
   </div>
 
-  <div class="text-center md:pr-8 lg:pr-12">   <!-- Extra space after Devices -->
+  <div class="text-center md:pr-8 lg:pr-12">   
     <div class="stat-number counter text-[28px] md:text-4xl font-bold leading-none" 
-         data-target="98000" style="font-family:'Syne',sans-serif;color:var(--green)">0</div>
+         data-target="98000" style="font-family:'Poppins',sans-serif;color:var(--green)">0</div>
     <p class="text-xs mt-3 font-medium" style="color:var(--slate)">Devices</p>
   </div>
 
   <div class="text-center">
     <div class="stat-number counter text-[28px] md:text-4xl font-bold leading-none" 
-         data-target="24000" style="font-family:'Syne',sans-serif;color:var(--green)">0</div>
+         data-target="24000" style="font-family:'Poppins',sans-serif;color:var(--green)">0</div>
     <p class="text-xs mt-3 font-medium" style="color:var(--slate)">Tons CO₂ Saved</p>
   </div>
 </div>
@@ -376,12 +363,12 @@
                 </div>
               </div>
               <div class="rounded-2xl flex flex-col justify-center p-6" style="background:linear-gradient(135deg,var(--green-dark),var(--green))">
-                <div style="font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;color:white;line-height:1">78%</div>
+                <div style="font-family:'Poppins',sans-serif;font-size:2.5rem;font-weight:800;color:white;line-height:1">78%</div>
                 <p class="text-green-100 text-sm font-medium mt-1">Carbon Reduction</p>
                 <i class="fas fa-leaf text-green-200 text-2xl mt-3"></i>
               </div>
             </div>
-            <div class="absolute -left-8 bottom-24 bg-white rounded-2xl p-4 shadow-xl border" style="border-color:rgba(0,200,150,0.2)">
+            <div class="absolute -left-8 bottom-24 bg-white rounded-2xl p-4 shadow-xl border" style="border-color:rgba(144,204,11,0.2)">
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:var(--green-light)">
                   <i class="fas fa-shield-alt" style="color:var(--green-dark)"></i>
@@ -406,7 +393,6 @@
 
     <!-- WASTE MATERIALS SECTION - With Hover Effects & Doodle Art Background -->
     <section class="py-24 px-6 relative overflow-hidden" style="background:var(--mist)">
-        <!-- Subtle Doodle Art Background (E-waste & recycling line art) -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <div class="w-full h-full bg-repeat"
                 style="background-image: url('https://media.istockphoto.com/id/1195454474/vector/electronic-waste-icons-set-outline-style.jpg?s=612x612&w=is&k=20&c=jFgJc5-GID9pXOPty2sgD9UIMY1aMGnBbnq_S6oDc2c='); background-size: 300px;">
@@ -418,14 +404,13 @@
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                 <div>
                     <span class="pill">What We Recover</span>
-                    <h2 class="text-4xl md:text-5xl font-bold mt-3" style="font-family:'Syne',sans-serif">Waste <span class="grad-text">Materials</span></h2>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-3" style="font-family:'Poppins',sans-serif">Waste <span class="grad-text">Materials</span></h2>
                 </div>
                 <p class="max-w-sm text-sm leading-relaxed" style="color:var(--slate)">We responsibly process every category of electronic and industrial waste.</p>
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 lg:gap-8 place-items-center">
                 
-                <!-- Computer/PC -->
                 <div class="text-center flex flex-col items-center group">
                     <div
                         class="w-28 h-28 flex items-center justify-center bg-white rounded-xl shadow-lg border-2 border-[#f5b642] group-hover:shadow-2xl group-hover:scale-110 group-hover:border-4 group-hover:border-[#e74c3c] transition-all duration-300">
@@ -441,7 +426,6 @@
                     </p>
                 </div>
 
-                <!-- Mobile Phones -->
                 <div class="text-center flex flex-col items-center group">
                     <div
                         class="w-28 h-28 flex items-center justify-center bg-white rounded-xl shadow-lg border-2 border-[#f5b642] group-hover:shadow-2xl group-hover:scale-110 group-hover:border-4 group-hover:border-[#e74c3c] transition-all duration-300">
@@ -457,7 +441,6 @@
                     </p>
                 </div>
 
-                <!-- Batteries -->
                 <div class="text-center flex flex-col items-center group">
                     <div
                         class="w-28 h-28 flex items-center justify-center bg-white rounded-xl shadow-lg border-2 border-[#f5b642] group-hover:shadow-2xl group-hover:scale-110 group-hover:border-4 group-hover:border-[#e74c3c] transition-all duration-300">
@@ -473,7 +456,6 @@
                     </p>
                 </div>
 
-                <!-- Circuit Boards -->
                 <div class="text-center flex flex-col items-center group">
                     <div
                         class="w-28 h-28 flex items-center justify-center bg-white rounded-xl shadow-lg border-2 border-[#f5b642] group-hover:shadow-2xl group-hover:scale-110 group-hover:border-4 group-hover:border-[#e74c3c] transition-all duration-300">
@@ -489,7 +471,6 @@
                     </p>
                 </div>
 
-                <!-- Monitors -->
                 <div class="text-center flex flex-col items-center group">
                     <div
                         class="w-28 h-28 flex items-center justify-center bg-white rounded-xl shadow-lg border-2 border-[#f5b642] group-hover:shadow-2xl group-hover:scale-110 group-hover:border-4 group-hover:border-[#e74c3c] transition-all duration-300">
@@ -505,7 +486,6 @@
                     </p>
                 </div>
 
-                <!-- Printers -->
                 <div class="text-center flex flex-col items-center group">
                     <div
                         class="w-28 h-28 flex items-center justify-center bg-white rounded-xl shadow-lg border-2 border-[#f5b642] group-hover:shadow-2xl group-hover:scale-110 group-hover:border-4 group-hover:border-[#e74c3c] transition-all duration-300">
@@ -521,7 +501,6 @@
                     </p>
                 </div>
 
-                <!-- Cables & Wires -->
                 <div class="text-center flex flex-col items-center group">
                     <div
                         class="w-28 h-28 flex items-center justify-center bg-white rounded-xl shadow-lg border-2 border-[#f5b642] group-hover:shadow-2xl group-hover:scale-110 group-hover:border-4 group-hover:border-[#e74c3c] transition-all duration-300">
@@ -537,7 +516,6 @@
                     </p>
                 </div>
 
-                <!-- Books -->
 <div class="text-center flex flex-col items-center group">
     <div
         class="w-28 h-28 flex items-center justify-center bg-white rounded-xl shadow-lg border-2 border-[#f5b642] group-hover:shadow-2xl group-hover:scale-110 group-hover:border-4 group-hover:border-[#e74c3c] transition-all duration-300">
@@ -553,7 +531,6 @@
     </p>
 </div>
 
-                <!-- Lights & Bulbs -->
 <div class="text-center flex flex-col items-center group">
     <div
         class="w-28 h-28 flex items-center justify-center bg-white rounded-xl shadow-lg border-2 border-[#f5b642] group-hover:shadow-2xl group-hover:scale-110 group-hover:border-4 group-hover:border-[#e74c3c] transition-all duration-300">
@@ -569,7 +546,6 @@
     </p>
 </div>
 
-<!-- Electronics -->
 <div class="text-center flex flex-col items-center group">
     <div
         class="w-28 h-28 flex items-center justify-center bg-white rounded-xl shadow-lg border-2 border-[#f5b642] group-hover:shadow-2xl group-hover:scale-110 group-hover:border-4 group-hover:border-[#e74c3c] transition-all duration-300">
@@ -585,7 +561,6 @@
     </p>
 </div>
 
-<!-- Steel -->
 <div class="text-center flex flex-col items-center group">
     <div
         class="w-28 h-28 flex items-center justify-center bg-white rounded-xl shadow-lg border-2 border-[#f5b642] group-hover:shadow-2xl group-hover:scale-110 group-hover:border-4 group-hover:border-[#e74c3c] transition-all duration-300">
@@ -601,7 +576,6 @@
     </p>
 </div>
 
-<!-- Servers -->
 <div class="text-center flex flex-col items-center group">
     <div
         class="w-28 h-28 flex items-center justify-center bg-white rounded-xl shadow-lg border-2 border-[#f5b642] group-hover:shadow-2xl group-hover:scale-110 group-hover:border-4 group-hover:border-[#e74c3c] transition-all duration-300">
@@ -624,213 +598,77 @@
 <section class="py-12 px-6 relative overflow-hidden bg-cover bg-center bg-no-repeat" 
     style="background-image: url('/image/0.7.jpg');">
     
-    <!-- Dark Overlay -->
     <div class="absolute inset-0 bg-black/60"></div>
     
-    <!-- Subtle Doodle Art Overlay -->
     <div class="absolute inset-0 opacity-5 pointer-events-none">
-        <img src="https://media.istockphoto.com/id/1195454474/vector/electronic-waste-icons-set-outline-style.jpg?s=612x612&w=is&k=20&c=jFgJc5-GID9pXOPty2sgD9UIMY1aMGnBbnq_S6oDc2c=" 
-             alt="doodle background" 
-             class="w-full h-full object-cover opacity-0">
         <div class="w-full h-full bg-repeat"
             style="background-image: url('https://media.istockphoto.com/id/1195454474/vector/electronic-waste-icons-set-outline-style.jpg?s=612x612&w=is&k=20&c=jFgJc5-GID9pXOPty2sgD9UIMY1aMGnBbnq_S6oDc2c='); background-size: 200px;">
         </div>
     </div>
 
     <div class="max-w-6xl mx-auto relative z-10">
-
-        <!-- Section Header - Compact -->
         <div class="text-center mb-10">
             <span class="pill bg-[#1a3c34] text-white border-none text-xs px-3 py-1">Methodology</span>
-            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-white" style="font-family:'Syne',sans-serif">
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-white" style="font-family:'Poppins',sans-serif">
                 Our Core <span class="text-[#f5b642]">Pillars</span>
             </h2>
             <div class="flex justify-center mt-2">
                 <div class="w-16 h-0.5 bg-[#e74c3c] rounded-full"></div>
             </div>
-            <p class="mt-3 text-gray-300 max-w-md mx-auto text-xs">
-                Three integrated processes for maximum recovery, data security, and environmental responsibility.
-            </p>
         </div>
 
-        <!-- Cards Grid - Compact -->
         <div class="grid md:grid-cols-3 gap-4">
-
-            <!-- Card 1: Smart Sorting -->
             <div class="group flex flex-col rounded-xl overflow-hidden border border-gray-200 hover:border-[#f5b642] hover:shadow-xl transition-all duration-300 hover:scale-[1.02] bg-white">
-    
-    <div class="bg-green-50 px-5 pt-6 pb-4 flex flex-col gap-2">
-        
-        <div class="flex items-center justify-between">
-            
-            <span class="font-mono text-[10px] tracking-widest font-semibold text-green-600">
-                01 / Process
-            </span>
+                <div class="bg-green-50 px-5 pt-6 pb-4 flex flex-col gap-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-mono text-[10px] tracking-widest font-semibold text-green-600">01 / Process</span>
+                        <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 6h13M3 12h9M3 18h13" /><circle cx="18" cy="6" r="2" fill="currentColor"/><circle cx="14" cy="12" r="2" fill="currentColor"/><circle cx="18" cy="18" r="2" fill="currentColor"/></svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold" style="font-family:'Poppins',sans-serif">Smart Sorting</h3>
+                </div>
+                <div class="bg-white p-5 flex flex-col gap-3 flex-1 border-t border-gray-100">
+                    <p class="text-gray-500 text-xs leading-relaxed">AI-powered segregation of e-waste for highest material recovery and efficiency.</p>
+                    <div class="flex flex-wrap gap-1.5 mt-auto"><span class="text-[10px] px-2 py-1 rounded-full bg-green-50 text-green-700 font-medium">AI Vision</span><span class="text-[10px] px-2 py-1 rounded-full bg-green-50 text-green-700 font-medium">Max Recovery</span></div>
+                </div>
+            </div>
 
-            <!-- Sorting Icon -->
-            <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
-                
-                <svg xmlns="http://www.w3.org/2000/svg" 
-                     class="w-4 h-4 text-green-600"
-                     fill="none" 
-                     viewBox="0 0 24 24" 
-                     stroke="currentColor"
-                     stroke-width="2">
+           <div class="group flex flex-col rounded-xl overflow-hidden border border-[#f5b642]/30 hover:border-[#e74c3c] hover:shadow-xl transition-all duration-300 md:-mt-2 md:mb-2 hover:scale-[1.02]">
+                <div class="bg-gradient-to-br from-zinc-900 to-[#1a3c34] px-5 pt-6 pb-4 flex flex-col gap-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-mono text-[10px] tracking-widest font-semibold text-[#f5b642]">02 / Process</span>
+                        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:rotate-12 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#f5b642]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.7 6.3a1 1 0 010 1.4l-1.4 1.4 2 2 1.4-1.4a1 1 0 111.4 1.4l-4.2 4.2a1 1 0 01-1.4 0l-6-6a1 1 0 010-1.4l4.2-4.2a1 1 0 011.4 1.4L10.7 7l2 2 1.4-1.4a1 1 0 011.4 0z"/></svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white" style="font-family:'Poppins',sans-serif">Precision Dismantling</h3>
+                </div>
+                <div class="bg-gradient-to-br from-zinc-900 to-[#1a3c34] p-5 flex flex-col gap-3 flex-1 border-t border-white/10">
+                    <p class="text-gray-300 text-xs leading-relaxed">Certified manual dismantling with strict safety standards and secure data destruction.</p>
+                    <div class="flex flex-wrap gap-1.5 mt-auto"><span class="text-[10px] px-2 py-1 rounded-full bg-white/10 text-[#f5b642] font-medium">NIST Compliant</span><span class="text-[10px] px-2 py-1 rounded-full bg-white/10 text-[#f5b642] font-medium">Data Destruction</span></div>
+                </div>
+            </div>
 
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M3 6h13M3 12h9M3 18h13" />
-
-                    <circle cx="18" cy="6" r="2" fill="currentColor"/>
-                    <circle cx="14" cy="12" r="2" fill="currentColor"/>
-                    <circle cx="18" cy="18" r="2" fill="currentColor"/>
-
-                </svg>
-
+            <div class="group flex flex-col rounded-xl overflow-hidden border border-gray-200 hover:border-[#f5b642] hover:shadow-xl transition-all duration-300 hover:scale-[1.02] bg-white">
+                <div class="bg-emerald-50 px-5 pt-6 pb-4 flex flex-col gap-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-mono text-[10px] tracking-widest font-semibold text-emerald-600">03 / Process</span>
+                        <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7l3-3m0 0l3 3m-3-3v8m7 5l-3 3m0 0l-3-3m3 3v-8"/></svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold" style="font-family:'Poppins',sans-serif">Sustainable Recycling</h3>
+                </div>
+                <div class="bg-white p-5 flex flex-col gap-3 flex-1 border-t border-gray-100">
+                    <p class="text-gray-500 text-xs leading-relaxed">Environmentally responsible processing that transforms waste into quality raw materials.</p>
+                    <div class="flex flex-wrap gap-1.5 mt-auto"><span class="text-[10px] px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 font-medium">Circular Economy</span><span class="text-[10px] px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 font-medium">Zero Landfill</span></div>
+                </div>
             </div>
         </div>
-
-        <h3 class="text-xl font-bold" style="font-family:'Syne',sans-serif">
-            Smart Sorting
-        </h3>
-    </div>
-
-    <div class="bg-white p-5 flex flex-col gap-3 flex-1 border-t border-gray-100">
         
-        <p class="text-gray-500 text-xs leading-relaxed">
-            AI-powered segregation of e-waste for highest material recovery and efficiency.
-        </p>
-
-        <div class="flex flex-wrap gap-1.5 mt-auto">
-            
-            <span class="text-[10px] px-2 py-1 rounded-full bg-green-50 text-green-700 font-medium">
-                AI Vision
-            </span>
-
-            <span class="text-[10px] px-2 py-1 rounded-full bg-green-50 text-green-700 font-medium">
-                Max Recovery
-            </span>
-
-        </div>
-    </div>
-
-</div>
-
-           <!-- Card 2: Precision Dismantling -->
-<div class="group flex flex-col rounded-xl overflow-hidden border border-[#f5b642]/30 hover:border-[#e74c3c] hover:shadow-xl transition-all duration-300 md:-mt-2 md:mb-2 hover:scale-[1.02]">
-    
-    <div class="bg-gradient-to-br from-zinc-900 to-[#1a3c34] px-5 pt-6 pb-4 flex flex-col gap-2">
-        
-        <div class="flex items-center justify-between">
-            
-            <span class="font-mono text-[10px] tracking-widest font-semibold text-[#f5b642]">
-                02 / Process
-            </span>
-
-            <!-- Dismantling Icon -->
-            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:rotate-12 transition-transform">
-                
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     class="w-4 h-4 text-[#f5b642]"
-                     fill="none"
-                     viewBox="0 0 24 24"
-                     stroke="currentColor"
-                     stroke-width="2">
-
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M14.7 6.3a1 1 0 010 1.4l-1.4 1.4 2 2 1.4-1.4a1 1 0 111.4 1.4l-4.2 4.2a1 1 0 01-1.4 0l-6-6a1 1 0 010-1.4l4.2-4.2a1 1 0 011.4 1.4L10.7 7l2 2 1.4-1.4a1 1 0 011.4 0z"/>
-
-                </svg>
-
-            </div>
-        </div>
-
-        <h3 class="text-xl font-bold text-white" style="font-family:'Syne',sans-serif">
-            Precision Dismantling
-        </h3>
-    </div>
-
-    <div class="bg-gradient-to-br from-zinc-900 to-[#1a3c34] p-5 flex flex-col gap-3 flex-1 border-t border-white/10">
-        
-        <p class="text-gray-300 text-xs leading-relaxed">
-            Certified manual dismantling with strict safety standards and secure data destruction.
-        </p>
-
-        <div class="flex flex-wrap gap-1.5 mt-auto">
-            
-            <span class="text-[10px] px-2 py-1 rounded-full bg-white/10 text-[#f5b642] font-medium">
-                NIST Compliant
-            </span>
-
-            <span class="text-[10px] px-2 py-1 rounded-full bg-white/10 text-[#f5b642] font-medium">
-                Data Destruction
-            </span>
-
-        </div>
-    </div>
-</div>
-
-
-<!-- Card 3: Sustainable Recycling -->
-<div class="group flex flex-col rounded-xl overflow-hidden border border-gray-200 hover:border-[#f5b642] hover:shadow-xl transition-all duration-300 hover:scale-[1.02] bg-white">
-    
-    <div class="bg-emerald-50 px-5 pt-6 pb-4 flex flex-col gap-2">
-        
-        <div class="flex items-center justify-between">
-            
-            <span class="font-mono text-[10px] tracking-widest font-semibold text-emerald-600">
-                03 / Process
-            </span>
-
-            <!-- Recycling Icon -->
-            <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
-                
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     class="w-4 h-4 text-emerald-600"
-                     fill="none"
-                     viewBox="0 0 24 24"
-                     stroke="currentColor"
-                     stroke-width="2">
-
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M7 7l3-3m0 0l3 3m-3-3v8m7 5l-3 3m0 0l-3-3m3 3v-8"/>
-
-                </svg>
-
-            </div>
-        </div>
-
-        <h3 class="text-xl font-bold" style="font-family:'Syne',sans-serif">
-            Sustainable Recycling
-        </h3>
-    </div>
-
-    <div class="bg-white p-5 flex flex-col gap-3 flex-1 border-t border-gray-100">
-        
-        <p class="text-gray-500 text-xs leading-relaxed">
-            Environmentally responsible processing that transforms waste into quality raw materials.
-        </p>
-
-        <div class="flex flex-wrap gap-1.5 mt-auto">
-            
-            <span class="text-[10px] px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 font-medium">
-                Circular Economy
-            </span>
-
-            <span class="text-[10px] px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 font-medium">
-                Zero Landfill
-            </span>
-
-        </div>
-    </div>
-</div>
-        </div>
-        
-        <!-- Compact CTA -->
         <div class="text-center mt-8">
-            <button class="px-6 py-2 bg-[#e74c3c] hover:bg-[#c0392b] text-white text-sm font-semibold rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 inline-flex items-center gap-2">
-                Learn More 
-                <img src="https://img.icons8.com/fluency/16/long-arrow-right.png" alt="arrow" class="w-3 h-3 filter brightness-0 invert">
-            </button>
+            <button class="px-6 py-2 bg-[#e74c3c] hover:bg-[#c0392b] text-white text-sm font-semibold rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 inline-flex items-center gap-2">Learn More <img src="https://img.icons8.com/fluency/16/long-arrow-right.png" alt="arrow" class="w-3 h-3 filter brightness-0 invert"></button>
         </div>
     </div>
 </section>
@@ -839,20 +677,16 @@
 <section id="about" class="py-10 px-6 relative overflow-hidden"
          style="background:linear-gradient(135deg, var(--mist) 0%, #ffffff 100%)">
  
-  <!-- Background decorative elements -->
   <div class="absolute top-0 right-0 w-60 h-60 bg-green-100 rounded-full filter blur-3xl opacity-20 -z-0"></div>
   <div class="absolute bottom-0 left-0 w-48 h-48 bg-cyan-100 rounded-full filter blur-3xl opacity-20 -z-0"></div>
  
   <div class="max-w-7xl mx-auto relative z-10">
     <div class="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
      
-      <!-- LEFT SIDE - Visual Compact -->
       <div class="relative">
         <div class="relative">
-          <!-- Backdrop -->
           <div class="absolute -top-2 -left-2 w-full h-full rounded-2xl bg-gradient-to-br from-green-200/50 to-cyan-200/30 -z-0"></div>
          
-          <!-- Main Image Container - FIXED -->
           <div class="relative rounded-xl overflow-hidden shadow-lg bg-gray-300" 
                style="height: 280px; width: 100%;">
             
@@ -872,7 +706,6 @@
             </div>
           </div>
          
-          <!-- Floating Stats Compact -->
           <div class="absolute -bottom-4 -right-4 bg-white rounded-xl p-2.5 shadow-md border border-green-100">
             <div class="flex items-center gap-2">
               <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
@@ -885,7 +718,6 @@
             </div>
           </div>
          
-          <!-- Certification Badge Compact -->
           <div class="absolute -top-3 -left-3 bg-white/95 backdrop-blur-sm rounded-lg px-2.5 py-1.5 shadow-md border border-green-100 text-[10px]">
             <div class="flex items-center gap-1.5">
               <i class="fas fa-shield-alt text-green-500 text-xs"></i>
@@ -895,7 +727,6 @@
           </div>
         </div>
        
-        <!-- Quick Stats Compact -->
         <div class="grid grid-cols-3 gap-2 mt-6">
           <div class="text-center p-2 rounded-lg bg-white shadow-sm border border-green-100">
             <i class="fas fa-calendar-alt text-green-500 text-xs mb-0.5"></i>
@@ -915,7 +746,6 @@
         </div>
       </div>
      
-      <!-- RIGHT SIDE - Content Compact -->
       <div>
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-green-50 to-cyan-50 border border-green-200 mb-3">
           <span class="relative flex h-1.5 w-1.5">
@@ -925,7 +755,7 @@
           <span class="text-[10px] font-bold text-green-700 tracking-widest">OUR STORY</span>
         </div>
        
-        <h2 class="text-2xl md:text-3xl font-bold leading-tight" style="font-family:'Syne',sans-serif">
+        <h2 class="text-2xl md:text-3xl font-bold leading-tight" style="font-family:'Poppins',sans-serif">
           Pune's <span class="grad-text">E-Waste</span> Revolution
         </h2>
        
@@ -933,7 +763,6 @@
           Leading responsible e-waste recycling in Pune since 2017. MPCB authorized vendor offering professional collection and disposal services.
         </p>
        
-        <!-- Features Compact -->
         <div class="mt-4 space-y-2">
           <div class="flex items-start gap-3 p-2 rounded-xl bg-white/60 border border-green-100 hover:border-green-300 transition-all group">
             <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex-shrink-0 flex items-center justify-center">
@@ -966,7 +795,6 @@
           </div>
         </div>
        
-        <!-- Trust Bar Compact -->
         <div class="mt-4 flex items-center justify-between text-xs">
           <div class="flex items-center gap-1.5">
             <div class="flex -space-x-1.5">
@@ -988,7 +816,6 @@
           </div>
         </div>
        
-        <!-- CTA Compact -->
         <div class="mt-4">
           <a href="#contact"
              class="inline-flex items-center gap-2 px-5 py-2 rounded-xl font-semibold text-white text-sm shadow-md hover:shadow-lg transition-all hover:gap-3"
@@ -1005,11 +832,11 @@
     <!-- FULL-WIDTH BANNER -->
     <div class="relative overflow-hidden" style="height:340px">
       <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=1600&q=75" alt="Green environment banner" loading="lazy" class="w-full h-full object-cover">
-      <div class="absolute inset-0 flex flex-col items-center justify-center text-center" style="background:linear-gradient(135deg,rgba(0,90,60,0.82),rgba(0,60,80,0.75))">
+      <div class="absolute inset-0 flex flex-col items-center justify-center text-center" style="background:linear-gradient(135deg,rgba(122,174,9,0.82),rgba(0,60,80,0.75))">
         <span class="pill pill-dark mb-4">Our Commitment</span>
-        <h2 class="text-4xl md:text-5xl font-bold text-white max-w-3xl leading-tight" style="font-family:'Syne',sans-serif">Protecting the planet,<br>one device at a time.</h2>
+        <h2 class="text-4xl md:text-5xl font-bold text-white max-w-3xl leading-tight" style="font-family:'Poppins',sans-serif">Protecting the planet,<br>one device at a time.</h2>
         <p class="text-green-200 mt-4 max-w-xl text-sm">Over 98,000 devices safely recycled. Zero landfill policy. Certified data destruction.</p>
-        <a href="#quote" class="mt-6 px-6 py-3 rounded-xl font-bold text-sm text-white transition-all hover:-translate-y-1" style="background:var(--green);box-shadow:0 6px 20px rgba(0,200,150,0.4)">Schedule Pickup Today →</a>
+        <a href="#quote" class="mt-6 px-6 py-3 rounded-xl font-bold text-sm text-white transition-all hover:-translate-y-1" style="background:var(--green);box-shadow:0 6px 20px rgba(144,204,11,0.4)">Schedule Pickup Today →</a>
       </div>
     </div>
 
@@ -1017,13 +844,12 @@
    <section id="services" class="py-16 px-6 bg-gradient-to-b from-white to-green-50/30">
   <div class="max-w-7xl mx-auto">
     
-    <!-- Section Header - Compact -->
     <div class="text-center mb-10">
       <span class="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-green-600 bg-green-50 px-3 py-1 rounded-full">
         <span class="w-1 h-1 rounded-full bg-green-500"></span>
         CORE OFFERINGS
       </span>
-      <h2 class="text-3xl md:text-4xl font-bold mt-2" style="font-family:'Syne',sans-serif">
+      <h2 class="text-3xl md:text-4xl font-bold mt-2" style="font-family:'Poppins',sans-serif">
         What <span class="bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent">We Offer</span>
       </h2>
       <p class="text-gray-500 text-sm max-w-xl mx-auto mt-2">
@@ -1031,14 +857,11 @@
       </p>
     </div>
 
-    <!-- Services Grid - 3 Compact Cards -->
     <div class="grid md:grid-cols-3 gap-5">
       
-      <!-- Card 1 -->
       <div class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 border border-gray-100 hover:border-green-200 overflow-hidden">
         <div class="h-1 w-full bg-gradient-to-r from-green-500 to-emerald-400"></div>
         <div class="p-5">
-          <!-- Icon + Title Row -->
           <div class="flex items-start justify-between mb-3">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-sm">
               <i class="fas fa-truck-fast text-white text-sm"></i>
@@ -1046,12 +869,11 @@
             <span class="text-[10px] font-mono font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">01</span>
           </div>
           
-          <h3 class="text-base font-bold text-gray-800 mb-1.5" style="font-family:'Syne',sans-serif">E-Waste Collection</h3>
+          <h3 class="text-base font-bold text-gray-800 mb-1.5" style="font-family:'Poppins',sans-serif">E-Waste Collection</h3>
           <p class="text-gray-500 text-xs leading-relaxed mb-3">
             Scheduled doorstep collection from businesses, IT parks, and institutions with GPS-tracked logistics.
           </p>
           
-          <!-- Mini Tags -->
           <div class="flex flex-wrap gap-1.5 mb-3">
             <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Doorstep</span>
             <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Scheduled</span>
@@ -1065,7 +887,6 @@
         </div>
       </div>
       
-      <!-- Card 2 - Featured (slightly highlighted) -->
       <div class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-green-100 overflow-hidden relative">
         <div class="absolute top-2 right-2 z-10">
           <span class="text-[8px] font-bold px-1.5 py-0.5 rounded-full bg-green-500 text-white">Most Trusted</span>
@@ -1079,7 +900,7 @@
             <span class="text-[10px] font-mono font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">02</span>
           </div>
           
-          <h3 class="text-base font-bold text-gray-800 mb-1.5" style="font-family:'Syne',sans-serif">E-Waste Recycling</h3>
+          <h3 class="text-base font-bold text-gray-800 mb-1.5" style="font-family:'Poppins',sans-serif">E-Waste Recycling</h3>
           <p class="text-gray-500 text-xs leading-relaxed mb-3">
             Certified eco-friendly recovery of precious metals, plastics, and components with zero-landfill guarantee.
           </p>
@@ -1097,7 +918,6 @@
         </div>
       </div>
       
-      <!-- Card 3 -->
       <div class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 border border-gray-100 hover:border-green-200 overflow-hidden">
         <div class="h-1 w-full bg-gradient-to-r from-green-500 to-emerald-400"></div>
         <div class="p-5">
@@ -1108,7 +928,7 @@
             <span class="text-[10px] font-mono font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">03</span>
           </div>
           
-          <h3 class="text-base font-bold text-gray-800 mb-1.5" style="font-family:'Syne',sans-serif">Refurbishment</h3>
+          <h3 class="text-base font-bold text-gray-800 mb-1.5" style="font-family:'Poppins',sans-serif">Refurbishment</h3>
           <p class="text-gray-500 text-xs leading-relaxed mb-3">
             Extend device lifespan through expert repair and certified refurbishment, maximizing value recovery.
           </p>
@@ -1127,7 +947,6 @@
       </div>
     </div>
     
-    <!-- Compact Additional Info Row -->
     <div class="mt-6 flex flex-col sm:flex-row gap-3">
       <div class="flex-1 flex items-center gap-3 p-3 rounded-lg bg-white border border-green-100 shadow-sm hover:shadow transition">
         <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
@@ -1149,7 +968,6 @@
       </div>
     </div>
     
-    <!-- Compact CTA -->
     <div class="mt-6 flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-green-800 to-emerald-700 shadow-md">
       <div class="flex items-center gap-2">
         <div class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
@@ -1174,7 +992,7 @@
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-14">
           <span class="pill">How It Works</span>
-          <h2 class="text-4xl md:text-5xl font-bold mt-3" style="font-family:'Syne',sans-serif">Our Recycling <span class="grad-text">Process</span></h2>
+          <h2 class="text-4xl md:text-5xl font-bold mt-3" style="font-family:'Poppins',sans-serif">Our Recycling <span class="grad-text">Process</span></h2>
           <p class="mt-3 max-w-lg mx-auto text-sm" style="color:var(--slate)">A streamlined, secure 7-step journey from your premises to certified recycling</p>
         </div>
         <div class="flex flex-wrap justify-center gap-4" id="timelineSteps"></div>
@@ -1202,19 +1020,17 @@
 
   <div class="max-w-7xl mx-auto">
    
-    <!-- Section Header - Compact & Clean -->
     <div class="text-center mb-10">
       <div class="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-green-600 bg-green-50 px-3 py-1 rounded-full mb-3">
         <i class="fas fa-check-circle text-[10px]"></i>
         <span>WHY TRUST US</span>
       </div>
-      <h2 class="text-3xl md:text-4xl font-bold" style="font-family:'Syne',sans-serif">
+      <h2 class="text-3xl md:text-4xl font-bold" style="font-family:'Poppins',sans-serif">
         Why Choose <span class="bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent">VOZON</span>
       </h2>
       <p class="text-gray-500 text-sm max-w-xl mx-auto mt-2">
         Trusted by 500+ enterprises for secure, compliant, and sustainable e-waste management
       </p>
-      <!-- Decorative line -->
       <div class="flex justify-center gap-1.5 mt-4">
         <div class="w-8 h-0.5 rounded-full bg-green-300"></div>
         <div class="w-4 h-0.5 rounded-full bg-green-600"></div>
@@ -1222,10 +1038,8 @@
       </div>
     </div>
 
-    <!-- Why Choose Grid - 6 Compact Cards -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
      
-      <!-- Card 1: Certified Compliance -->
       <div class="group bg-white rounded-2xl p-5 border-2 border-green-200 hover:border-green-500 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
         <div class="flex items-start gap-3">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition">
@@ -1242,7 +1056,6 @@
         </div>
       </div>
      
-      <!-- Card 2: Eco Solutions -->
       <div class="group bg-white rounded-2xl p-5 border-2 border-green-200 hover:border-green-500 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
         <div class="flex items-start gap-3">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition">
@@ -1259,7 +1072,6 @@
         </div>
       </div>
      
-      <!-- Card 3: Data Security -->
       <div class="group bg-white rounded-2xl p-5 border-2 border-green-200 hover:border-green-500 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
         <div class="flex items-start gap-3">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition">
@@ -1276,7 +1088,6 @@
         </div>
       </div>
      
-      <!-- Card 4: Resource Recovery -->
       <div class="group bg-white rounded-2xl p-5 border-2 border-green-200 hover:border-green-500 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
         <div class="flex items-start gap-3">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition">
@@ -1293,7 +1104,6 @@
         </div>
       </div>
      
-      <!-- Card 5: Carbon Tracking -->
       <div class="group bg-white rounded-2xl p-5 border-2 border-green-200 hover:border-green-500 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
         <div class="flex items-start gap-3">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-green-600 flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition">
@@ -1310,7 +1120,6 @@
         </div>
       </div>
      
-      <!-- Card 6: Timely Service -->
       <div class="group bg-white rounded-2xl p-5 border-2 border-green-200 hover:border-green-500 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
         <div class="flex items-start gap-3">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition">
@@ -1328,7 +1137,6 @@
       </div>
     </div>
 
-    <!-- Compact CTA -->
     <div class="mt-8 text-center">
       <a href="#contact" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-white shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5 bg-gradient-to-r from-green-600 to-emerald-600">
         <i class="fas fa-handshake text-xs"></i>
@@ -1345,19 +1153,18 @@
     
     <div class="text-center mb-12">
       <span class="pill pill-dark">Our Impact</span>
-      <h2 class="text-4xl font-bold mt-3 text-white" style="font-family:'Syne',sans-serif">
+      <h2 class="text-4xl font-bold mt-3 text-white" style="font-family:'Poppins',sans-serif">
         Sustainability <span class="grad-text">Metrics</span>
       </h2>
     </div>
 
-    <!-- Metrics Grid -->
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
       
       <div class="bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center hover:border-green-400/40 transition-all group">
         <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center">
           <i class="fas fa-cloud-sun text-2xl text-white"></i>
         </div>
-        <div class="counter text-4xl font-bold text-white" data-target="78" style="font-family:'Syne',sans-serif">0</div>
+        <div class="counter text-4xl font-bold text-white" data-target="78" style="font-family:'Poppins',sans-serif">0</div>
         <p class="text-green-400 text-xs font-medium mt-1 tracking-widest">CARBON REDUCTION</p>
         <p class="text-white/60 text-xs">78% since 2017</p>
       </div>
@@ -1366,7 +1173,7 @@
         <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
           <i class="fas fa-laptop text-2xl text-white"></i>
         </div>
-        <div class="counter text-4xl font-bold text-white" data-target="98000" style="font-family:'Syne',sans-serif">0</div>
+        <div class="counter text-4xl font-bold text-white" data-target="98000" style="font-family:'Poppins',sans-serif">0</div>
         <p class="text-cyan-400 text-xs font-medium mt-1 tracking-widest">DEVICES RECYCLED</p>
       </div>
 
@@ -1374,7 +1181,7 @@
         <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center">
           <i class="fas fa-recycle text-2xl text-white"></i>
         </div>
-        <div class="counter text-4xl font-bold text-white" data-target="12500" style="font-family:'Syne',sans-serif">0</div>
+        <div class="counter text-4xl font-bold text-white" data-target="12500" style="font-family:'Poppins',sans-serif">0</div>
         <p class="text-emerald-400 text-xs font-medium mt-1 tracking-widest">TONS DIVERTED</p>
       </div>
 
@@ -1382,12 +1189,11 @@
         <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-lime-400 to-green-500 flex items-center justify-center">
           <i class="fas fa-tree text-2xl text-white"></i>
         </div>
-        <div class="counter text-4xl font-bold text-white" data-target="350000" style="font-family:'Syne',sans-serif">0</div>
+        <div class="counter text-4xl font-bold text-white" data-target="350000" style="font-family:'Poppins',sans-serif">0</div>
         <p class="text-lime-400 text-xs font-medium mt-1 tracking-widest">TREES SAVED</p>
       </div>
     </div>
 
-    <!-- Compact Bottom Banner -->
     <div class="mt-12 rounded-2xl overflow-hidden relative bg-black/40">
       <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1600&q=80" 
            alt="Forest" 
@@ -1395,7 +1201,7 @@
       
       <div class="relative z-10 px-8 py-10 md:flex items-center justify-between gap-8">
         <div>
-          <h3 class="text-2xl font-bold text-white" style="font-family:'Syne',sans-serif">
+          <h3 class="text-2xl font-bold text-white" style="font-family:'Poppins',sans-serif">
             Join <span class="text-green-400">580+</span> Enterprises
           </h3>
           <p class="text-white/80 mt-2">Making measurable environmental impact through responsible e-waste management.</p>
@@ -1411,36 +1217,13 @@
   </div>
 </section>
 
-    <!-- TESTIMONIALS -->
-    <!-- <section class="py-24 px-6" style="background:var(--mist)">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-12">
-          <span class="pill">Client Feedback</span>
-          <h2 class="text-4xl md:text-5xl font-bold mt-3" style="font-family:'Syne',sans-serif">Trusted by <span class="grad-text">Enterprises</span></h2>
-        </div>
-        <div id="testimonials" class="flex gap-5 overflow-x-auto pb-4 scroll-smooth" style="scrollbar-width:none"></div>
-      </div>
-    </section> -->
-
-    <!-- FAQ -->
-    <!-- <section class="py-24 px-6">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-12">
-          <span class="pill">Common Questions</span>
-          <h2 class="text-4xl md:text-5xl font-bold mt-3" style="font-family:'Syne',sans-serif">Frequently <span class="grad-text">Asked</span></h2>
-        </div>
-        <div class="space-y-3" id="faqContainer"></div>
-      </div>
-    </section> -->
-
     <!-- CONTACT & QUOTE - COMPACT REDESIGN -->
     <section id="contact" class="py-20 px-6" style="background:var(--mist)">
       <div class="max-w-6xl mx-auto">
         
-        <!-- Section Header -->
         <div class="text-center mb-12">
           <span class="pill">Get In Touch</span>
-          <h2 class="text-3xl md:text-4xl font-bold mt-3" style="font-family:'Syne',sans-serif">
+          <h2 class="text-3xl md:text-4xl font-bold mt-3" style="font-family:'Poppins',sans-serif">
             Let's <span class="grad-text">Safeguard</span> the Environment
           </h2>
           <p class="mt-3 text-gray-500 max-w-md mx-auto">Responsible e-waste disposal solutions tailored for your enterprise.</p>
@@ -1448,9 +1231,7 @@
         
         <div class="grid lg:grid-cols-2 gap-8">
           
-          <!-- LEFT: Contact Info -->
           <div class="space-y-5">
-            <!-- Address -->
             <div class="flex gap-4 p-4 rounded-xl bg-white shadow-sm border border-green-100 hover:shadow-md transition">
               <div class="w-11 h-11 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0">
                 <i class="fas fa-map-marker-alt text-green-600 text-lg"></i>
@@ -1461,7 +1242,6 @@
               </div>
             </div>
             
-            <!-- Phone -->
             <div class="flex gap-4 p-4 rounded-xl bg-white shadow-sm border border-green-100 hover:shadow-md transition">
               <div class="w-11 h-11 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0">
                 <i class="fas fa-phone-alt text-green-600 text-lg"></i>
@@ -1472,7 +1252,6 @@
               </div>
             </div>
             
-            <!-- Email -->
             <div class="flex gap-4 p-4 rounded-xl bg-white shadow-sm border border-green-100 hover:shadow-md transition">
               <div class="w-11 h-11 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0">
                 <i class="fas fa-envelope text-green-600 text-lg"></i>
@@ -1483,7 +1262,6 @@
               </div>
             </div>
             
-            <!-- Social + Map Row -->
             <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
               <div class="flex gap-2">
                 <a href="#" class="w-9 h-9 rounded-lg bg-white shadow-sm flex items-center justify-center text-green-600 hover:bg-green-600 hover:text-white transition"><i class="fab fa-facebook-f text-sm"></i></a>
@@ -1496,28 +1274,24 @@
               </div>
             </div>
             
-            <!-- Mini Map -->
             <div class="rounded-xl overflow-hidden shadow-md h-36 mt-1">
               <iframe class="w-full h-full" src="https://maps.google.com/maps?q=Pune%2C%20Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
             </div>
           </div>
           
-          <!-- RIGHT: Quote Form -->
           <div class="bg-white rounded-2xl shadow-lg border border-green-100 overflow-hidden">
-            <!-- Form Header -->
             <div class="px-6 py-4 bg-gradient-to-r from-green-50 to-white border-b border-green-100">
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center">
                   <i class="fas fa-file-alt text-green-600 text-lg"></i>
                 </div>
                 <div>
-                  <h3 class="font-bold text-gray-800" style="font-family:'Syne',sans-serif">Get a Free Quote</h3>
+                  <h3 class="font-bold text-gray-800" style="font-family:'Poppins',sans-serif">Get a Free Quote</h3>
                   <p class="text-xs text-gray-500">Schedule pickup or request consultation</p>
                 </div>
               </div>
             </div>
             
-            <!-- Form Body -->
             <form id="quoteForm" class="p-6 space-y-4">
               <div class="grid grid-cols-2 gap-3">
                 <input type="text" placeholder="Full Name" class="w-full p-2.5 text-sm rounded-lg border border-gray-200 focus:border-green-400 focus:ring-2 focus:ring-green-100 outline-none transition">
@@ -1549,7 +1323,6 @@
                 </button>
               </div>
               
-              <!-- Trust badges -->
               <div class="flex justify-center gap-4 pt-2 text-xs text-gray-400">
                 <span><i class="fas fa-lock text-green-500 mr-1"></i> Secure</span>
                 <span><i class="fas fa-clock text-green-500 mr-1"></i> 24hr Response</span>
@@ -1569,10 +1342,8 @@
 
   <div class="max-w-7xl mx-auto relative z-10">
 
-    <!-- Main Footer Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-8 border-b border-white/10">
 
-      <!-- Brand Column -->
       <div>
         <div class="mb-4">
           <img src="image/Vozon-logo.png" alt="VOZON Comsoft Logo" class="h-11 w-auto object-contain">
@@ -1596,10 +1367,9 @@
         </div>
       </div>
 
-      <!-- Quick Links -->
       <div>
         <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2"
-            style="font-family:'Syne',sans-serif">
+            style="font-family:'Poppins',sans-serif">
           <span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>
           Quick Links
         </h4>
@@ -1619,31 +1389,30 @@
         </ul>
       </div>
 
-      <!-- Contact Info -->
       <div>
         <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2"
-            style="font-family:'Syne',sans-serif">
+            style="font-family:'Poppins',sans-serif">
           <span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>
           Get In Touch
         </h4>
         <div class="space-y-4">
           <div class="flex items-start gap-3">
             <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                 style="background:rgba(0,200,150,0.12);border:1px solid rgba(0,200,150,0.2)">
+                 style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)">
               <span class="material-icons text-green-400" style="font-size:15px">call</span>
             </div>
             <a href="tel:+918600726007" class="text-gray-300 font-semibold text-sm hover:text-green-400 transition mt-1">+91 86007 26007</a>
           </div>
           <div class="flex items-start gap-3">
             <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                 style="background:rgba(0,200,150,0.12);border:1px solid rgba(0,200,150,0.2)">
+                 style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)">
               <span class="material-icons text-green-400" style="font-size:15px">mail</span>
             </div>
             <a href="mailto:infovozon@gmail.com" class="text-gray-300 font-semibold text-sm hover:text-green-400 transition mt-1 break-all">infovozon@gmail.com</a>
           </div>
           <div class="flex items-start gap-3">
             <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                 style="background:rgba(0,200,150,0.12);border:1px solid rgba(0,200,150,0.2)">
+                 style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)">
               <span class="material-icons text-green-400" style="font-size:15px">location_on</span>
             </div>
             <span class="text-gray-300 font-semibold text-sm leading-relaxed mt-1">Sr.No. 19/9, Indira College Road,<br>Village Marunji, Tal. Mulshi, Pune</span>
@@ -1651,10 +1420,9 @@
         </div>
       </div>
 
-      <!-- Business Hours & Certifications -->
       <div>
         <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2"
-            style="font-family:'Syne',sans-serif">
+            style="font-family:'Poppins',sans-serif">
           <span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>
           Business Hours
         </h4>
@@ -1670,22 +1438,21 @@
         </div>
         <div class="flex flex-wrap gap-2 pt-2">
           <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"
-                style="background:rgba(0,200,150,0.1);color:#6ee7b7;border:1px solid rgba(0,200,150,0.2)">
+                style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)">
             <span class="material-icons" style="font-size:11px">verified</span> MPCB Authorized
           </span>
           <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"
-                style="background:rgba(0,200,150,0.1);color:#6ee7b7;border:1px solid rgba(0,200,150,0.2)">
+                style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)">
             <span class="material-icons" style="font-size:11px">recycling</span> ISO 14001
           </span>
           <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"
-                style="background:rgba(0,200,150,0.1);color:#6ee7b7;border:1px solid rgba(0,200,150,0.2)">
+                style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)">
             <span class="material-icons" style="font-size:11px">security</span> Data Security
           </span>
         </div>
       </div>
     </div>
 
-    <!-- Bottom Bar -->
     <div class="pt-6 flex flex-col sm:flex-row flex-wrap justify-between items-center gap-3 text-xs">
       <div class="flex flex-wrap justify-center gap-4">
         <a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">Privacy Policy</a>
@@ -1730,7 +1497,7 @@
 </button>
 
   <script>
-    // DATA
+    // DATA (keeping original JS unchanged)
     const wasteItems = [
       { name: "Steel", icon: "fas fa-hard-hat" },
       { name: "Electronics", icon: "fas fa-tv" },
@@ -1793,7 +1560,7 @@
       const inner = document.getElementById("marqueeInner");
       const allItems = [...marqueeItems, ...marqueeItems];
       allItems.forEach(item => {
-        inner.innerHTML += `<span class="marquee-item" style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;color:rgba(255,255,255,0.9)"><span class="marquee-dot" style="background:rgba(255,255,255,0.6)"></span>${item}</span>`;
+        inner.innerHTML += `<span class="marquee-item" style="font-family:'Poppins',sans-serif;font-weight:700;font-size:0.9rem;color:rgba(255,255,255,0.9)"><span class="marquee-dot" style="background:rgba(255,255,255,0.6)"></span>${item}</span>`;
       });
     }
 
@@ -1811,7 +1578,7 @@
       if (!servDiv) return;
       servDiv.innerHTML = "";
       servicesList.forEach(s => {
-        servDiv.innerHTML += `<div class="card-base p-7 tilt-card"><div class="icon-box icon-box-lg mb-5"><i class="${s.icon}"></i></div><h3 class="text-xl font-bold mb-2" style="font-family:'Syne',sans-serif;color:var(--ink)">${s.title}</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">${s.desc}</p><div class="flex flex-wrap gap-2 mt-5 pt-4" style="border-top:1px solid rgba(0,200,150,0.1)">${s.tags.map(t => `<span class="text-xs px-2.5 py-1 rounded-full font-medium" style="background:var(--green-light);color:var(--green-dark)">${t}</span>`).join('')}</div></div>`;
+        servDiv.innerHTML += `<div class="card-base p-7 tilt-card"><div class="icon-box icon-box-lg mb-5"><i class="${s.icon}"></i></div><h3 class="text-xl font-bold mb-2" style="font-family:'Poppins',sans-serif;color:var(--ink)">${s.title}</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">${s.desc}</p><div class="flex flex-wrap gap-2 mt-5 pt-4" style="border-top:1px solid rgba(0,200,150,0.1)">${s.tags.map(t => `<span class="text-xs px-2.5 py-1 rounded-full font-medium" style="background:var(--green-light);color:var(--green-dark)">${t}</span>`).join('')}</div></div>`;
       });
     }
 
@@ -1820,7 +1587,7 @@
       if (!whyDiv) return;
       whyDiv.innerHTML = "";
       whyList.forEach((w, i) => {
-        whyDiv.innerHTML += `<div class="card-base p-7 tilt-card"><div class="flex items-start gap-4"><div class="icon-box flex-shrink-0"><i class="${w.icon}"></i></div><div><div class="font-mono-custom text-xs mb-1" style="color:var(--green);font-family:'Fira Code',monospace">0${i+1}</div><h3 class="font-bold text-lg" style="font-family:'Syne',sans-serif;color:var(--ink)">${w.title}</h3><p class="text-sm mt-2 leading-relaxed" style="color:var(--slate)">${w.desc}</p></div></div></div>`;
+        whyDiv.innerHTML += `<div class="card-base p-7 tilt-card"><div class="flex items-start gap-4"><div class="icon-box flex-shrink-0"><i class="${w.icon}"></i></div><div><div class="font-mono-custom text-xs mb-1" style="color:var(--green);font-family:'Fira Code',monospace">0${i+1}</div><h3 class="font-bold text-lg" style="font-family:'Poppins',sans-serif;color:var(--ink)">${w.title}</h3><p class="text-sm mt-2 leading-relaxed" style="color:var(--slate)">${w.desc}</p></div></div></div>`;
       });
     }
 
@@ -1931,26 +1698,6 @@
       });
     });
 
-    // Custom cursor
-    const cursor = document.querySelector(".custom-cursor");
-    const cursorDot = document.querySelector(".cursor-dot");
-    if (cursor && cursorDot) {
-      document.addEventListener("mousemove", (e) => {
-        cursor.style.transform = `translate(${e.clientX - 5}px, ${e.clientY - 5}px)`;
-        cursorDot.style.transform = `translate(${e.clientX - 16}px, ${e.clientY - 16}px)`;
-      });
-      
-      document.querySelectorAll("a, button, .card-base, .card-dark, .tilt-card, .testimonial-card, .faq-item").forEach(el => {
-        el.addEventListener("mouseenter", () => {
-          cursor.style.transform += " scale(2)";
-          cursorDot.style.opacity = "0.9";
-        });
-        el.addEventListener("mouseleave", () => {
-          cursor.style.transform = cursor.style.transform.replace(" scale(2)", "");
-          cursorDot.style.opacity = "0.5";
-        });
-      });
-    }
 
     // Parallax blobs
     document.addEventListener("mousemove", (e) => {
