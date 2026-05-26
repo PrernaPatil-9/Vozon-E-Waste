@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>E-Waste Recycling | VOZON</title>
+  <meta name="description" content="Certified eco-friendly e-waste recycling in Pune. Zero landfill, maximum material recovery. MPCB Authorized by VOZON.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  
+  <style>
+    :root { --green:#90CC0B;--green-dark:#7AAE09;--green-light:#F2F9E6;--ink:#151616;--ink-soft:#2A2E2E;--mist:#F6F9F0;--slate:#5A6B5A;--white:#FFFFFF;--accent:#FFD166;--accent2:#06AED5; }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Poppins',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden}
+    h1,h2,h3,h4,h5{font-family:'Poppins',sans-serif;font-weight:700}
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--mist)}::-webkit-scrollbar-thumb{background:var(--green);border-radius:99px}
+    .scroll-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--green),var(--accent2));z-index:1000}
+    #navbar{position:fixed;top:0;width:100%;z-index:50;background:rgba(255,255,255,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(144,204,11,0.12);transition:all 0.4s}
+    .nav-link{position:relative;font-weight:500;color:var(--ink-soft);transition:color 0.25s}
+    .nav-link:hover{color:var(--green)}
+    .grad-text{background:linear-gradient(135deg,var(--green-dark),var(--green),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .pill{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green-dark);padding:5px 14px;border-radius:99px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;font-family:'Fira Code',monospace}
+    .card-base{background:var(--white);border-radius:20px;border:1px solid rgba(144,204,11,0.14);transition:all 0.35s cubic-bezier(0.23,1,0.32,1);overflow:hidden}
+    .card-base:hover{border-color:var(--green);box-shadow:0 20px 48px rgba(144,204,11,0.14),0 2px 8px rgba(0,0,0,0.04);transform:translateY(-6px)}
+     
+    /* Dropdown styles */
+.dropdown{position:relative}
+.dropdown-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) scaleY(0);transform-origin:top;background:white;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.12),0 0 0 1px rgba(144,204,11,0.15);min-width:220px;padding:10px;transition:all 0.25s cubic-bezier(0.23,1,0.32,1);opacity:0;pointer-events:none;z-index:100}
+.dropdown:hover .dropdown-menu{transform:translateX(-50%) scaleY(1);opacity:1;pointer-events:all}
+.dropdown-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;color:var(--ink-soft);font-size:0.82rem;font-weight:500;transition:all 0.2s;text-decoration:none}
+.dropdown-item:hover{background:var(--green-light);color:var(--green-dark)}
+.dropdown-item.active-page{background:var(--green-light);color:var(--green-dark);font-weight:700}
+.dropdown-item i{width:16px;color:var(--green)}
+
+    .hero-service{background:linear-gradient(135deg,#F8FCEF 0%,#F0F8E6 50%,#F0F9FF 100%);position:relative;overflow:hidden}
+    .hero-blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+    @keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(20px,-20px) scale(1.03)}66%{transform:translate(-15px,10px) scale(0.97)}}
+    .blob-anim{animation:blobFloat 12s ease-in-out infinite}
+    @keyframes floatBadge{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    .float-badge{animation:floatBadge 3s ease-in-out infinite}
+    .stat-card{background:white;border-radius:20px;padding:28px;text-align:center;border:1px solid rgba(144,204,11,0.15)}
+    .stat-num{font-size:2.4rem;font-weight:800;color:var(--green);line-height:1;font-family:'Poppins',sans-serif}
+    .feature-icon{width:56px;height:56px;border-radius:16px;background:var(--green-light);color:var(--green-dark);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;transition:all 0.3s}
+    .card-base:hover .feature-icon{background:var(--green);color:white}
+    .step-card{background:white;border-radius:20px;border:1px solid rgba(144,204,11,0.15);padding:28px;transition:all 0.3s}
+    .step-card:hover{border-color:var(--green);box-shadow:0 16px 40px rgba(144,204,11,0.12);transform:translateY(-4px)}
+    .step-num{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--green-dark),var(--green));color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex-shrink:0}
+    .cta-section{background:linear-gradient(135deg,var(--ink) 0%,var(--ink-soft) 100%)}
+    /* Progress bars */
+    .progress-bar{height:8px;border-radius:99px;background:var(--green-light);overflow:hidden}
+    .progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--green-dark),var(--green));transition:width 1.5s ease}
+    /* Material cards */
+    .material-card{background:white;border-radius:16px;border:1px solid rgba(144,204,11,0.15);padding:20px;text-align:center;transition:all 0.3s}
+    .material-card:hover{border-color:var(--green);box-shadow:0 12px 32px rgba(144,204,11,0.12);transform:translateY(-4px)}
+  </style>
+</head>
+<body>
+<div class="scroll-progress" id="progressBar"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="py-4 px-6 md:px-12 fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-[#8BB500]/10">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="image/Vozon-logo.png" alt="VOZON" class="h-11 md:h-12 w-auto object-contain" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div style="display:none;align-items:center;gap:8px">
+        <div style="width:36px;height:36px;background:#8BB500;border-radius:10px;display:flex;align-items:center;justify-content:center">
+          <i class="fas fa-recycle text-white"></i>
+        </div>
+        <span style="font-family:'Poppins',sans-serif;font-weight:800;font-size:1.25rem;color:#1A1A1A">VOZON</span>
+      </div>
+    </a>
+    
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex space-x-8 text-sm items-center">
+      <a href="index.html" class="text-[#1A1A1A] hover:text-[#8BB500] transition-colors font-medium">Home</a>
+      <a href="index.html#about" class="text-[#1A1A1A] hover:text-[#8BB500] transition-colors font-medium">About</a>
+      
+      <!-- Services Dropdown -->
+      <div class="relative group">
+        <button class="text-[#8BB500] hover:text-[#6F8F00] transition-colors font-medium flex items-center gap-1">
+          Services 
+          <svg class="w-3 h-3 mt-0.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        
+        <!-- Dropdown Menu -->
+        <div class="absolute left-1/2 -translate-x-1/2 pt-4 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+          <div class="bg-white rounded-2xl shadow-xl border border-[#8BB500]/20 overflow-hidden">
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-l border-t border-[#8BB500]/20"></div>
+            <div class="py-2">
+              <a href="service-collection.html" class="flex items-center gap-3 px-5 py-3 text-sm text-[#1A1A1A] hover:bg-[#8BB500]/5 hover:text-[#8BB500] transition-colors">
+                <i class="fas fa-truck w-5 text-[#8BB500]"></i> E-Waste Collection
+              </a>
+              <a href="service-recycling.html" class="flex items-center gap-3 px-5 py-3 text-sm bg-[#8BB500]/5 text-[#8BB500] font-semibold">
+                <i class="fas fa-recycle w-5 text-[#8BB500]"></i> E-Waste Recycling
+              </a>
+              <a href="service-refurbishment.html" class="flex items-center gap-3 px-5 py-3 text-sm text-[#1A1A1A] hover:bg-[#8BB500]/5 hover:text-[#8BB500] transition-colors">
+                <i class="fas fa-microchip w-5 text-[#8BB500]"></i> Refurbishment
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <a href="index.html#process" class="text-[#1A1A1A] hover:text-[#8BB500] transition-colors font-medium">Process</a>
+      <a href="index.html#impact" class="text-[#1A1A1A] hover:text-[#8BB500] transition-colors font-medium">Impact</a>
+      <a href="index.html#contact" class="text-[#1A1A1A] hover:text-[#8BB500] transition-colors font-medium">Contact</a>
+    </div>
+    
+    <div class="hidden md:flex items-center gap-3">
+      <a href="tel:+918600726007" class="text-sm font-medium text-[#1A1A1A] hover:text-[#8BB500] transition-colors">
+        <i class="fas fa-phone-alt mr-1 text-[#8BB500]"></i>+91 86007 26007
+      </a>
+      <a href="index.html#contact" class="px-6 py-2.5 rounded-xl text-sm font-bold text-white bg-[#8BB500] hover:bg-[#6F8F00] hover:-translate-y-0.5 transition-all shadow-lg shadow-[#8BB500]/30">
+        Get Quote →
+      </a>
+    </div>
+    
+    <button id="menuBtn" class="md:hidden text-2xl text-[#1A1A1A]"><i class="fas fa-bars"></i></button>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 p-7 flex flex-col gap-5 overflow-y-auto">
+    <button id="closeMenu" class="self-end text-2xl text-[#1A1A1A]"><i class="fas fa-times"></i></button>
+    <a href="index.html" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">Home</a>
+    <a href="index.html#about" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">About</a>
+    <div>
+      <p class="text-lg font-semibold text-[#8BB500] mb-2">Services</p>
+      <div class="pl-4 flex flex-col gap-2">
+        <a href="service-collection.html" class="text-sm font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">→ E-Waste Collection</a>
+        <a href="service-recycling.html" class="text-sm font-bold text-[#8BB500]">→ E-Waste Recycling</a>
+        <a href="service-refurbishment.html" class="text-sm font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">→ Refurbishment</a>
+      </div>
+    </div>
+    <a href="index.html#process" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">Process</a>
+    <a href="index.html#impact" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">Impact</a>
+    <a href="index.html#contact" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">Contact</a>
+    <a href="index.html#contact" class="py-3 rounded-xl text-center font-bold text-white bg-[#8BB500] hover:bg-[#6F8F00] transition">Get Quote</a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div style="background:white;border-bottom:1px solid rgba(144,204,11,0.1);padding-top:96px;padding-bottom:12px;padding-left:24px;padding-right:24px">
+  <div class="max-w-7xl mx-auto">
+    <nav class="flex items-center gap-2 text-xs" style="color:var(--slate)">
+      <a href="index.html" class="hover:text-green-600 transition">Home</a>
+      <i class="fas fa-chevron-right text-[10px]"></i>
+      <a href="index.html#services" class="hover:text-green-600 transition">Services</a>
+      <i class="fas fa-chevron-right text-[10px]"></i>
+      <span style="color:var(--green);font-weight:600">E-Waste Recycling</span>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero-service pt-10 pb-20 px-6">
+  <div class="hero-blob blob-anim" style="width:500px;height:500px;background:radial-gradient(circle,rgba(144,204,11,0.12),transparent 70%);top:-100px;left:-150px"></div>
+  <div class="hero-blob blob-anim" style="width:400px;height:400px;background:radial-gradient(circle,rgba(6,174,213,0.09),transparent 70%);bottom:-80px;right:-120px;animation-delay:4s"></div>
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="pill mb-5"><span>●</span> Service 02 — Recycling</div>
+        <h1 class="text-5xl md:text-6xl font-bold leading-tight">E-Waste<br><span class="grad-text">Recycling</span><br>Excellence</h1>
+        <p class="mt-5 text-lg leading-relaxed max-w-md" style="color:var(--slate)">Certified, eco-friendly recovery of precious metals, rare earth materials, and valuable components — with zero-landfill guarantee and maximum material yield.</p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="index.html#contact" class="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white text-sm hover:-translate-y-0.5 transition-all" style="background:linear-gradient(135deg,var(--green-dark),var(--green));box-shadow:0 6px 20px rgba(144,204,11,0.3)">
+            <i class="fas fa-recycle"></i> Start Recycling
+          </a>
+          <a href="tel:+918600726007" class="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm border-2 transition-all" style="border-color:var(--green);color:var(--green)">
+            <i class="fas fa-phone-alt"></i> Call Now
+          </a>
+        </div>
+        <div class="flex flex-wrap gap-4 mt-8 pt-6" style="border-top:1px solid rgba(144,204,11,0.15)">
+          <div class="flex items-center gap-2 text-sm" style="color:var(--slate)"><i class="fas fa-check-circle" style="color:var(--green)"></i> Zero Landfill Policy</div>
+          <div class="flex items-center gap-2 text-sm" style="color:var(--slate)"><i class="fas fa-check-circle" style="color:var(--green)"></i> 98% Material Recovery</div>
+          <div class="flex items-center gap-2 text-sm" style="color:var(--slate)"><i class="fas fa-check-circle" style="color:var(--green)"></i> MPCB Authorized</div>
+          <div class="flex items-center gap-2 text-sm" style="color:var(--slate)"><i class="fas fa-check-circle" style="color:var(--green)"></i> ESG Reporting</div>
+        </div>
+      </div>
+      <div class="relative hidden lg:block">
+        <div class="rounded-2xl overflow-hidden shadow-2xl" style="height:360px">
+          <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800&q=80" alt="E-waste recycling" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
+            <div>
+              <span class="pill" style="background:rgba(144,204,11,0.85);color:white;font-size:0.7rem">Certified Process</span>
+              <p class="text-white font-bold text-lg mt-1">Zero Landfill Facility</p>
+              <p class="text-white/70 text-sm">11,000 sq.ft · Pune, Maharashtra</p>
+            </div>
+          </div>
+        </div>
+        <div class="float-badge absolute -left-6 top-16 bg-white rounded-2xl p-4 shadow-xl border" style="border-color:rgba(144,204,11,0.2)">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:var(--green-light)"><i class="fas fa-leaf" style="color:var(--green-dark)"></i></div>
+            <div><p class="font-bold text-sm">78% CO₂</p><p class="text-xs" style="color:var(--slate)">Carbon Reduced</p></div>
+          </div>
+        </div>
+        <div class="float-badge absolute -right-6 bottom-16 bg-white rounded-2xl p-4 shadow-xl border" style="border-color:rgba(144,204,11,0.2);animation-delay:1.5s">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:var(--green-light)"><i class="fas fa-recycle" style="color:var(--green-dark)"></i></div>
+            <div><p class="font-bold text-sm">98% Recovery</p><p class="text-xs" style="color:var(--slate)">Materials Saved</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section style="background:white;padding:2rem 1.5rem">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="stat-card"><div class="stat-num">12.5K</div><p class="text-sm font-medium mt-2" style="color:var(--slate)">Tons Recycled</p></div>
+      <div class="stat-card"><div class="stat-num">98%</div><p class="text-sm font-medium mt-2" style="color:var(--slate)">Material Recovery Rate</p></div>
+      <div class="stat-card"><div class="stat-num">0</div><p class="text-sm font-medium mt-2" style="color:var(--slate)">Landfill Waste</p></div>
+      <div class="stat-card"><div class="stat-num">24K+</div><p class="text-sm font-medium mt-2" style="color:var(--slate)">Tons CO₂ Saved</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS RECOVERED -->
+<section class="py-20 px-6" style="background:var(--mist)">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="pill">What We Recover</span>
+      <h2 class="text-4xl font-bold mt-3">Materials <span class="grad-text">Recovered</span></h2>
+      <p class="mt-3 text-sm max-w-lg mx-auto" style="color:var(--slate)">Our advanced recycling process extracts maximum value from every device</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-14">
+      <div class="material-card">
+        <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:linear-gradient(135deg,#FFD700,#FFA500)"><i class="fas fa-coins text-white text-lg"></i></div>
+        <p class="font-bold text-sm">Gold</p>
+        <p class="text-xs mt-1" style="color:var(--slate)">Circuit boards</p>
+      </div>
+      <div class="material-card">
+        <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:linear-gradient(135deg,#C0C0C0,#A0A0A0)"><i class="fas fa-gem text-white text-lg"></i></div>
+        <p class="font-bold text-sm">Silver</p>
+        <p class="text-xs mt-1" style="color:var(--slate)">Contacts & switches</p>
+      </div>
+      <div class="material-card">
+        <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:linear-gradient(135deg,#B87333,#C46210)"><i class="fas fa-bolt text-white text-lg"></i></div>
+        <p class="font-bold text-sm">Copper</p>
+        <p class="text-xs mt-1" style="color:var(--slate)">Cables & coils</p>
+      </div>
+      <div class="material-card">
+        <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:linear-gradient(135deg,#708090,#556B7B)"><i class="fas fa-hard-hat text-white text-lg"></i></div>
+        <p class="font-bold text-sm">Aluminum</p>
+        <p class="text-xs mt-1" style="color:var(--slate)">Frames & heatsinks</p>
+      </div>
+      <div class="material-card">
+        <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:linear-gradient(135deg,#2E86C1,#1A5276)"><i class="fas fa-shield-alt text-white text-lg"></i></div>
+        <p class="font-bold text-sm">Steel</p>
+        <p class="text-xs mt-1" style="color:var(--slate)">Chassis & brackets</p>
+      </div>
+      <div class="material-card">
+        <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:linear-gradient(135deg,#27AE60,#1E8449)"><i class="fas fa-recycle text-white text-lg"></i></div>
+        <p class="font-bold text-sm">Plastics</p>
+        <p class="text-xs mt-1" style="color:var(--slate)">Casings & parts</p>
+      </div>
+    </div>
+
+    <!-- Recovery rates -->
+    <div class="bg-white rounded-2xl p-8 border" style="border-color:rgba(144,204,11,0.15)">
+      <h3 class="text-xl font-bold mb-6">Material Recovery Rates</h3>
+      <div class="space-y-5">
+        <div>
+          <div class="flex justify-between text-sm font-medium mb-2"><span>Gold & Precious Metals</span><span style="color:var(--green)">99.2%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:99%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm font-medium mb-2"><span>Copper & Conductive Metals</span><span style="color:var(--green)">98.5%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:98%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm font-medium mb-2"><span>Aluminum & Steel</span><span style="color:var(--green)">97.8%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:97%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm font-medium mb-2"><span>Plastics & Polymers</span><span style="color:var(--green)">94%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:94%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECYCLING PROCESS -->
+<section class="py-20 px-6" style="background:white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <span class="pill">Step by Step</span>
+      <h2 class="text-4xl font-bold mt-3">Our Recycling <span class="grad-text">Process</span></h2>
+      <p class="mt-3 text-sm max-w-md mx-auto" style="color:var(--slate)">A rigorous, certified process that ensures maximum recovery and zero environmental harm</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="step-card">
+        <div class="step-num mb-4">01</div>
+        <h3 class="font-bold text-base mb-2">Intake & Weighing</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--slate)">All incoming e-waste is logged, weighed, and catalogued. Each client batch is tracked through our system with a unique ID.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num mb-4">02</div>
+        <h3 class="font-bold text-base mb-2">AI-Powered Sorting</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--slate)">Smart visual classification segregates devices by type, material composition, and hazard level for optimal routing.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num mb-4">03</div>
+        <h3 class="font-bold text-base mb-2">Data Destruction</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--slate)">NIST-certified degaussing, shredding, and multi-pass overwriting ensures 100% data sanitization before any processing.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num mb-4">04</div>
+        <h3 class="font-bold text-base mb-2">Precision Dismantling</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--slate)">Certified technicians manually dismantle devices following strict safety protocols to maximize component recovery.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num mb-4">05</div>
+        <h3 class="font-bold text-base mb-2">Material Separation</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--slate)">Advanced mechanical and chemical processes separate metals, plastics, glass, and rare earth elements.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num mb-4">06</div>
+        <h3 class="font-bold text-base mb-2">Certificate & Report</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--slate)">Clients receive recycling certificates, weight reports, CO₂ savings data, and ESG documentation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENVIRONMENTAL IMPACT -->
+<section class="py-20 px-6" style="background:var(--mist)">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="pill">Environmental Impact</span>
+      <h2 class="text-4xl font-bold mt-3">Our Green <span class="grad-text">Footprint</span></h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div class="space-y-5">
+        <div class="card-base p-6">
+          <div class="flex items-start gap-4">
+            <div class="feature-icon"><i class="fas fa-cloud-sun"></i></div>
+            <div>
+              <h3 class="font-bold text-base mb-1">Carbon Reduction</h3>
+              <p class="text-sm leading-relaxed" style="color:var(--slate)">Our recycling operations have reduced carbon emissions by 78% since 2017, saving over 24,000 tons of CO₂ equivalent.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-base p-6">
+          <div class="flex items-start gap-4">
+            <div class="feature-icon"><i class="fas fa-tree"></i></div>
+            <div>
+              <h3 class="font-bold text-base mb-1">Trees Equivalent Saved</h3>
+              <p class="text-sm leading-relaxed" style="color:var(--slate)">Our operations are equivalent to planting 350,000 trees — diverting toxic materials from soil and groundwater pollution.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-base p-6">
+          <div class="flex items-start gap-4">
+            <div class="feature-icon"><i class="fas fa-water"></i></div>
+            <div>
+              <h3 class="font-bold text-base mb-1">Water Table Protection</h3>
+              <p class="text-sm leading-relaxed" style="color:var(--slate)">Preventing toxic leachate from heavy metals like lead, mercury, and cadmium from contaminating Pune's groundwater.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-xl" style="height:400px">
+        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80" alt="Environmental impact" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="py-16 px-6" style="background:white">
+  <div class="max-w-5xl mx-auto text-center">
+    <span class="pill">Compliance</span>
+    <h2 class="text-3xl font-bold mt-3 mb-10">Certified & <span class="grad-text">Compliant</span></h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="p-5 rounded-2xl border-2 text-center" style="border-color:rgba(144,204,11,0.2)">
+        <i class="fas fa-certificate text-3xl mb-3" style="color:var(--green)"></i>
+        <p class="font-bold text-sm">MPCB Authorized</p>
+        <p class="text-xs mt-1" style="color:var(--slate)">Maharashtra Pollution Control Board</p>
+      </div>
+      <div class="p-5 rounded-2xl border-2 text-center" style="border-color:rgba(144,204,11,0.2)">
+        <i class="fas fa-leaf text-3xl mb-3" style="color:var(--green)"></i>
+        <p class="font-bold text-sm">ISO 14001</p>
+        <p class="text-xs mt-1" style="color:var(--slate)">Environmental Management</p>
+      </div>
+      <div class="p-5 rounded-2xl border-2 text-center" style="border-color:rgba(144,204,11,0.2)">
+        <i class="fas fa-shield-alt text-3xl mb-3" style="color:var(--green)"></i>
+        <p class="font-bold text-sm">NIST Compliant</p>
+        <p class="text-xs mt-1" style="color:var(--slate)">Data Destruction Standard</p>
+      </div>
+      <div class="p-5 rounded-2xl border-2 text-center" style="border-color:rgba(144,204,11,0.2)">
+        <i class="fas fa-recycle text-3xl mb-3" style="color:var(--green)"></i>
+        <p class="font-bold text-sm">E-Waste Rules 2016</p>
+        <p class="text-xs mt-1" style="color:var(--slate)">Govt. of India Compliant</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section py-20 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <span class="pill" style="background:rgba(144,204,11,0.15);color:var(--green)">Start Recycling</span>
+    <h2 class="text-4xl md:text-5xl font-bold mt-4 text-white">Turn Waste Into <span class="grad-text">Resources</span></h2>
+    <p class="mt-4 text-lg" style="color:rgba(255,255,255,0.7)">Every device we recycle is a step toward a cleaner planet. Partner with Pune's most trusted certified recycler.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+      <a href="index.html#contact" class="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white hover:-translate-y-1 transition-all" style="background:linear-gradient(135deg,var(--green-dark),var(--green));box-shadow:0 8px 24px rgba(144,204,11,0.35)">
+        <i class="fas fa-recycle"></i> Get Recycling Quote
+      </a>
+      <a href="tel:+918600726007" class="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold border-2 hover:-translate-y-1 transition-all" style="border-color:rgba(255,255,255,0.3);color:white">
+        <i class="fas fa-phone-alt" style="color:var(--green)"></i> +91 86007 26007
+      </a>
+    </div>
+    <div class="mt-12 pt-8" style="border-top:1px solid rgba(255,255,255,0.1)">
+      <p class="text-sm mb-4" style="color:rgba(255,255,255,0.5)">Explore our other services</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="service-collection.html" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold hover:-translate-y-0.5 transition-all" style="background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.15)"><i class="fas fa-truck" style="color:var(--green)"></i> E-Waste Collection</a>
+        <a href="service-refurbishment.html" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold hover:-translate-y-0.5 transition-all" style="background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.15)"><i class="fas fa-microchip" style="color:var(--green)"></i> Refurbishment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+ <!-- FOOTER -->
+<footer class="relative bg-cover bg-center bg-no-repeat"
+        style="background-image: url('/image/fbg.jpeg'); padding:3.5rem 1.5rem 2rem">
+
+  <div class="absolute inset-0" style="background:rgba(5,18,12,0.82)"></div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-8 border-b border-white/10">
+
+      <div>
+        <div class="mb-4">
+          <img src="image/Vozon-logo.png" alt="VOZON Comsoft Logo" class="h-11 w-auto object-contain">
+        </div>
+        <p class="text-gray-300 text-sm leading-relaxed font-semibold mb-5">
+          India's trusted e-waste management partner. Secure disposal, maximum recovery, and environmental responsibility since 2017.
+        </p>
+        <div class="flex gap-2">
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)">
+            <span class="material-icons" style="font-size:16px">facebook</span>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)">
+            <span class="material-icons" style="font-size:16px">photo_camera</span>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)">
+            <span class="material-icons" style="font-size:16px">work</span>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)">
+            <span class="material-icons" style="font-size:16px">smart_display</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2"
+            style="font-family:'Poppins',sans-serif">
+          <span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>
+          Quick Links
+        </h4>
+        <ul class="space-y-3">
+          <li><a href="#home" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
+            <span class="material-icons text-green-500" style="font-size:14px">home</span> Home</a></li>
+          <li><a href="#about" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
+            <span class="material-icons text-green-500" style="font-size:14px">info</span> About Us</a></li>
+          <li><a href="#services" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
+            <span class="material-icons text-green-500" style="font-size:14px">miscellaneous_services</span> Services</a></li>
+          <li><a href="#process" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
+            <span class="material-icons text-green-500" style="font-size:14px">autorenew</span> Our Process</a></li>
+          <li><a href="#impact" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
+            <span class="material-icons text-green-500" style="font-size:14px">eco</span> Sustainability Impact</a></li>
+          <li><a href="#contact" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
+            <span class="material-icons text-green-500" style="font-size:14px">contact_mail</span> Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2"
+            style="font-family:'Poppins',sans-serif">
+          <span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>
+          Get In Touch
+        </h4>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                 style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)">
+              <span class="material-icons text-green-400" style="font-size:15px">call</span>
+            </div>
+            <a href="tel:+918600726007" class="text-gray-300 font-semibold text-sm hover:text-green-400 transition mt-1">+91 86007 26007</a>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                 style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)">
+              <span class="material-icons text-green-400" style="font-size:15px">mail</span>
+            </div>
+            <a href="mailto:infovozon@gmail.com" class="text-gray-300 font-semibold text-sm hover:text-green-400 transition mt-1 break-all">infovozon@gmail.com</a>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                 style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)">
+              <span class="material-icons text-green-400" style="font-size:15px">location_on</span>
+            </div>
+            <span class="text-gray-300 font-semibold text-sm leading-relaxed mt-1">Sr.No. 19/9, Indira College Road,<br>Village Marunji, Tal. Mulshi, Pune</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2"
+            style="font-family:'Poppins',sans-serif">
+          <span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>
+          Business Hours
+        </h4>
+        <div class="space-y-2 mb-4">
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-300 font-semibold">Monday – Saturday</span>
+            <span class="text-white font-bold">9AM – 7PM</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-300 font-semibold">Sunday</span>
+            <span class="text-gray-500 font-semibold">Closed</span>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 pt-2">
+          <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"
+                style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)">
+            <span class="material-icons" style="font-size:11px">verified</span> MPCB Authorized
+          </span>
+          <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"
+                style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)">
+            <span class="material-icons" style="font-size:11px">recycling</span> ISO 14001
+          </span>
+          <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"
+                style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)">
+            <span class="material-icons" style="font-size:11px">security</span> Data Security
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-6 flex flex-col sm:flex-row flex-wrap justify-between items-center gap-3 text-xs">
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">Privacy Policy</a>
+        <span class="text-gray-600">|</span>
+        <a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">Terms & Conditions</a>
+        <span class="text-gray-600">|</span>
+        <a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">MPCB Certificate</a>
+      </div>
+      <div class="flex items-center gap-1.5 text-gray-400 font-semibold">
+        <span class="material-icons" style="font-size:13px">copyright</span>
+        2026 VOZON Comsoft Pvt Ltd. All rights reserved.
+      </div>
+      <div class="text-gray-400 font-semibold">
+        Developed by
+        <a href="https://kunashmedia.com/" target="_blank"
+           class="text-green-400 font-bold hover:underline">Kunash Media Solutions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button onclick="window.open('https://wa.me/918600726007','_blank')" class="fixed bottom-6 left-6 z-50 hover:scale-110 transition-transform"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-14 h-14"></button>
+<button id="backToTop" class="fixed bottom-6 right-6 w-14 h-14 flex items-center justify-center z-50 opacity-0 invisible hover:-translate-y-2" style="transition:all 0.3s">
+  <div style="width:44px;height:44px;background:linear-gradient(135deg,var(--green-dark),var(--green));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(144,204,11,0.4)"><i class="fas fa-arrow-up text-white text-sm"></i></div>
+</button>
+
+<script>
+  window.addEventListener('scroll',()=>{
+    document.getElementById('progressBar').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';
+    const btt=document.getElementById('backToTop');
+    if(window.scrollY>500){btt.style.opacity='1';btt.style.visibility='visible';}
+    else{btt.style.opacity='0';btt.style.visibility='hidden';}
+  });
+  document.getElementById('backToTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+  document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('translate-x-full'));
+  document.getElementById('closeMenu').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('translate-x-full'));
+</script>
+</body>
+</html>
