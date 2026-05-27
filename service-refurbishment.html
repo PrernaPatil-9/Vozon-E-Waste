@@ -8,14 +8,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   
   <style>
     :root{--green:#90CC0B;--green-dark:#7AAE09;--green-light:#F2F9E6;--ink:#151616;--ink-soft:#2A2E2E;--mist:#F6F9F0;--slate:#5A6B5A;--white:#FFFFFF;--accent:#FFD166;--accent2:#06AED5}
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{font-family:'Poppins',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden}
+    html{scroll-behavior:smooth; scroll-padding-top: 90px;}
+    body{font-family:'Poppins',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden; width:100%;}
     h1,h2,h3,h4,h5{font-family:'Poppins',sans-serif;font-weight:700}
     ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--mist)}::-webkit-scrollbar-thumb{background:var(--green);border-radius:99px}
     .scroll-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--green),var(--accent2));z-index:1000}
@@ -58,16 +57,48 @@
     .device-card:hover{border-color:var(--green);box-shadow:0 12px 32px rgba(144,204,11,0.12);transform:translateY(-4px)}
     /* Savings calculator display */
     .savings-highlight{background:linear-gradient(135deg,var(--green-dark),var(--green));border-radius:20px;padding:32px;color:white;text-align:center}
+    
+    /* Mobile Menu Fixes - fully responsive */
+    #mobileMenu {
+      position: fixed; top: 0; right: 0; height: 100%; width: 85%; max-width: 320px;
+      background: white; box-shadow: -2px 0 30px rgba(0,0,0,0.15); z-index: 1000;
+      transform: translateX(100%); transition: transform 0.3s ease-in-out;
+      overflow-y: auto; padding: 1.25rem; display: flex; flex-direction: column; gap: 1.25rem;
+    }
+    #mobileMenu.open { transform: translateX(0); }
+    body.menu-open { overflow: hidden; position: fixed; width: 100%; height: 100%; }
+    #menuOverlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); z-index: 999; opacity: 0; visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+    #menuOverlay.active { opacity: 1; visibility: visible; }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .step-card { padding: 20px; }
+      .stat-card { padding: 20px; }
+      .stat-num { font-size: 1.8rem; }
+      .device-card { padding: 15px; }
+      .feature-icon { width: 48px; height: 48px; font-size: 1.1rem; }
+      .hero-service { padding-top: 2rem; }
+    }
+    @media (max-width: 480px) {
+      .step-num { width: 40px; height: 40px; font-size: 0.85rem; }
+      .stat-num { font-size: 1.5rem; }
+      .pill { font-size: 0.65rem; padding: 4px 12px; }
+    }
   </style>
 </head>
 <body>
 <div class="scroll-progress" id="progressBar"></div>
+<div id="menuOverlay"></div>
 
-<!-- NAVBAR -->
-<nav id="navbar" class="py-4 px-6 md:px-12 fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-[#8BB500]/10">
+<!-- NAVBAR (fully responsive with hamburger) -->
+<nav id="navbar" class="py-3 md:py-4 px-4 md:px-8 lg:px-12 fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-[#8BB500]/10">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
-    <a href="index.html" class="flex items-center gap-3">
-      <img src="image/Vozon-logo.png" alt="VOZON" class="h-11 md:h-12 w-auto object-contain" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <a href="index.html" class="flex items-center gap-2 md:gap-3 flex-shrink-0">
+      <img src="image/Vozon-logo.png" alt="VOZON" class="h-8 md:h-11 w-auto object-contain" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div style="display:none;align-items:center;gap:8px">
         <div style="width:36px;height:36px;background:#8BB500;border-radius:10px;display:flex;align-items:center;justify-content:center">
           <i class="fas fa-recycle text-white"></i>
@@ -77,7 +108,7 @@
     </a>
     
     <!-- Desktop Menu -->
-    <div class="hidden md:flex space-x-8 text-sm items-center">
+    <div class="hidden lg:flex space-x-6 xl:space-x-8 text-sm items-center">
       <a href="index.html" class="text-[#1A1A1A] hover:text-[#8BB500] transition-colors font-medium">Home</a>
       <a href="index.html#about" class="text-[#1A1A1A] hover:text-[#8BB500] transition-colors font-medium">About</a>
       
@@ -114,37 +145,47 @@
       <a href="index.html#contact" class="text-[#1A1A1A] hover:text-[#8BB500] transition-colors font-medium">Contact</a>
     </div>
     
-    <div class="hidden md:flex items-center gap-3">
-      <a href="tel:+918600726007" class="text-sm font-medium text-[#1A1A1A] hover:text-[#8BB500] transition-colors">
+    <div class="hidden lg:flex items-center gap-3">
+      <a href="tel:+918600726007" class="text-sm font-medium text-[#1A1A1A] hover:text-[#8BB500] transition-colors whitespace-nowrap">
         <i class="fas fa-phone-alt mr-1 text-[#8BB500]"></i>+91 86007 26007
       </a>
-      <a href="index.html#contact" class="px-6 py-2.5 rounded-xl text-sm font-bold text-white bg-[#8BB500] hover:bg-[#6F8F00] hover:-translate-y-0.5 transition-all shadow-lg shadow-[#8BB500]/30">
+      <a href="index.html#contact" class="px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-[#8BB500] hover:bg-[#6F8F00] hover:-translate-y-0.5 transition-all shadow-lg shadow-[#8BB500]/30 whitespace-nowrap">
         Get Quote →
       </a>
     </div>
     
-    <button id="menuBtn" class="md:hidden text-2xl text-[#1A1A1A]"><i class="fas fa-bars"></i></button>
-  </div>
-  
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 p-7 flex flex-col gap-5 overflow-y-auto">
-    <button id="closeMenu" class="self-end text-2xl text-[#1A1A1A]"><i class="fas fa-times"></i></button>
-    <a href="index.html" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">Home</a>
-    <a href="index.html#about" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">About</a>
-    <div>
-      <p class="text-lg font-semibold text-[#8BB500] mb-2">Services</p>
-      <div class="pl-4 flex flex-col gap-2">
-        <a href="service-collection.html" class="text-sm font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">→ E-Waste Collection</a>
-        <a href="service-recycling.html" class="text-sm font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">→ E-Waste Recycling</a>
-        <a href="service-refurbishment.html" class="text-sm font-bold text-[#8BB500]">→ Refurbishment</a>
-      </div>
-    </div>
-    <a href="index.html#process" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">Process</a>
-    <a href="index.html#impact" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">Impact</a>
-    <a href="index.html#contact" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">Contact</a>
-    <a href="index.html#contact" class="py-3 rounded-xl text-center font-bold text-white bg-[#8BB500] hover:bg-[#6F8F00] transition">Get Quote</a>
+    <button id="menuBtn" class="lg:hidden text-2xl text-[#1A1A1A] focus:outline-none z-[1001] w-10 h-10 flex items-center justify-center" aria-label="Menu"><i class="fas fa-bars"></i></button>
   </div>
 </nav>
+
+<!-- Mobile Menu (fixed and responsive) -->
+<div id="mobileMenu">
+  <div class="flex justify-end">
+    <button id="closeMenu" class="text-2xl text-[#1A1A1A] w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="flex flex-col gap-4">
+    <a href="index.html" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] py-2 border-b border-gray-100">Home</a>
+    <a href="index.html#about" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] py-2 border-b border-gray-100">About</a>
+    <div class="py-2 border-b border-gray-100">
+      <div class="flex items-center justify-between cursor-pointer" id="mobileServicesToggle">
+        <span class="text-lg font-semibold text-[#1A1A1A]">Services</span>
+        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+      </div>
+      <div id="mobileServicesSubmenu" class="hidden pl-4 flex flex-col gap-3 mt-3">
+        <a href="service-collection.html" class="text-base font-medium text-[#1A1A1A] hover:text-[#8BB500] flex items-center gap-2"><i class="fas fa-truck text-[#8BB500] text-sm w-5"></i> E-Waste Collection</a>
+        <a href="service-recycling.html" class="text-base font-medium text-[#1A1A1A] hover:text-[#8BB500] flex items-center gap-2"><i class="fas fa-recycle text-[#8BB500] text-sm w-5"></i> E-Waste Recycling</a>
+        <a href="service-refurbishment.html" class="text-base font-bold text-[#8BB500] flex items-center gap-2"><i class="fas fa-microchip text-[#8BB500] text-sm w-5"></i> Refurbishment</a>
+      </div>
+    </div>
+    <a href="index.html#process" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] py-2 border-b border-gray-100">Process</a>
+    <a href="index.html#impact" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] py-2 border-b border-gray-100">Impact</a>
+    <a href="index.html#contact" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] py-2 border-b border-gray-100">Contact</a>
+    <div class="pt-3">
+      <a href="tel:+918600726007" class="flex items-center gap-3 py-3 text-base font-medium text-[#1A1A1A] hover:text-[#8BB500]"><i class="fas fa-phone-alt text-[#8BB500]"></i> +91 86007 26007</a>
+      <a href="index.html#contact" class="mt-4 w-full py-3 rounded-xl text-center font-bold text-white bg-[#8BB500] hover:bg-[#6F8F00] transition block shadow-md">Get Quote <i class="fas fa-arrow-right ml-1"></i></a>
+    </div>
+  </div>
+</div>
 
 <!-- BREADCRUMB -->
 <div style="background:white;border-bottom:1px solid rgba(144,204,11,0.1);padding-top:96px;padding-bottom:12px;padding-left:24px;padding-right:24px">
@@ -167,8 +208,8 @@
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       <div>
         <div class="pill mb-5"><span>●</span> Service 03 — Refurbishment</div>
-        <h1 class="text-5xl md:text-6xl font-bold leading-tight">Electronics<br><span class="grad-text">Refurbishment</span><br>& Renewal</h1>
-        <p class="mt-5 text-lg leading-relaxed max-w-md" style="color:var(--slate)">Maximize the value of your IT assets through expert repair, testing, and certified refurbishment. Reduce costs, support circular economy, and extend device lifespan.</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Electronics<br><span class="grad-text">Refurbishment</span><br>& Renewal</h1>
+        <p class="mt-5 text-base md:text-lg leading-relaxed max-w-md" style="color:var(--slate)">Maximize the value of your IT assets through expert repair, testing, and certified refurbishment. Reduce costs, support circular economy, and extend device lifespan.</p>
         <div class="flex flex-wrap gap-3 mt-8">
           <a href="index.html#contact" class="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white text-sm hover:-translate-y-0.5 transition-all" style="background:linear-gradient(135deg,var(--green-dark),var(--green));box-shadow:0 6px 20px rgba(144,204,11,0.3)">
             <i class="fas fa-tools"></i> Get Refurbishment Quote
@@ -233,36 +274,12 @@
       <p class="mt-3 text-sm max-w-lg mx-auto" style="color:var(--slate)">From enterprise laptops to complex server infrastructure — we restore and certify all categories</p>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-      <div class="device-card">
-        <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:var(--green-light)"><i class="fas fa-laptop" style="color:var(--green-dark);font-size:1.3rem"></i></div>
-        <p class="font-bold text-sm">Laptops</p>
-        <p class="text-xs mt-1" style="color:var(--slate)">All brands</p>
-      </div>
-      <div class="device-card">
-        <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:var(--green-light)"><i class="fas fa-desktop" style="color:var(--green-dark);font-size:1.3rem"></i></div>
-        <p class="font-bold text-sm">Desktops</p>
-        <p class="text-xs mt-1" style="color:var(--slate)">Tower & AIO</p>
-      </div>
-      <div class="device-card">
-        <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:var(--green-light)"><i class="fas fa-server" style="color:var(--green-dark);font-size:1.3rem"></i></div>
-        <p class="font-bold text-sm">Servers</p>
-        <p class="text-xs mt-1" style="color:var(--slate)">Rack & blade</p>
-      </div>
-      <div class="device-card">
-        <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:var(--green-light)"><i class="fas fa-tv" style="color:var(--green-dark);font-size:1.3rem"></i></div>
-        <p class="font-bold text-sm">Monitors</p>
-        <p class="text-xs mt-1" style="color:var(--slate)">LCD & LED</p>
-      </div>
-      <div class="device-card">
-        <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:var(--green-light)"><i class="fas fa-network-wired" style="color:var(--green-dark);font-size:1.3rem"></i></div>
-        <p class="font-bold text-sm">Networking</p>
-        <p class="text-xs mt-1" style="color:var(--slate)">Switches & routers</p>
-      </div>
-      <div class="device-card">
-        <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:var(--green-light)"><i class="fas fa-print" style="color:var(--green-dark);font-size:1.3rem"></i></div>
-        <p class="font-bold text-sm">Printers</p>
-        <p class="text-xs mt-1" style="color:var(--slate)">Laser & inkjet</p>
-      </div>
+      <div class="device-card"><div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:var(--green-light)"><i class="fas fa-laptop" style="color:var(--green-dark);font-size:1.3rem"></i></div><p class="font-bold text-sm">Laptops</p><p class="text-xs mt-1" style="color:var(--slate)">All brands</p></div>
+      <div class="device-card"><div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:var(--green-light)"><i class="fas fa-desktop" style="color:var(--green-dark);font-size:1.3rem"></i></div><p class="font-bold text-sm">Desktops</p><p class="text-xs mt-1" style="color:var(--slate)">Tower & AIO</p></div>
+      <div class="device-card"><div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:var(--green-light)"><i class="fas fa-server" style="color:var(--green-dark);font-size:1.3rem"></i></div><p class="font-bold text-sm">Servers</p><p class="text-xs mt-1" style="color:var(--slate)">Rack & blade</p></div>
+      <div class="device-card"><div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:var(--green-light)"><i class="fas fa-tv" style="color:var(--green-dark);font-size:1.3rem"></i></div><p class="font-bold text-sm">Monitors</p><p class="text-xs mt-1" style="color:var(--slate)">LCD & LED</p></div>
+      <div class="device-card"><div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:var(--green-light)"><i class="fas fa-network-wired" style="color:var(--green-dark);font-size:1.3rem"></i></div><p class="font-bold text-sm">Networking</p><p class="text-xs mt-1" style="color:var(--slate)">Switches & routers</p></div>
+      <div class="device-card"><div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:var(--green-light)"><i class="fas fa-print" style="color:var(--green-dark);font-size:1.3rem"></i></div><p class="font-bold text-sm">Printers</p><p class="text-xs mt-1" style="color:var(--slate)">Laser & inkjet</p></div>
     </div>
   </div>
 </section>
@@ -276,48 +293,12 @@
       <p class="mt-3 text-sm max-w-md mx-auto" style="color:var(--slate)">A rigorous multi-step process that ensures every device meets quality standards</p>
     </div>
     <div class="grid md:grid-cols-2 gap-5">
-      <div class="step-card flex gap-4">
-        <div class="step-num flex-shrink-0">01</div>
-        <div>
-          <h3 class="font-bold text-base mb-2">Device Assessment</h3>
-          <p class="text-sm leading-relaxed" style="color:var(--slate)">Comprehensive hardware and software diagnostic. Each device is tested for functionality, cosmetic condition, and component integrity. Assessment report generated.</p>
-        </div>
-      </div>
-      <div class="step-card flex gap-4">
-        <div class="step-num flex-shrink-0">02</div>
-        <div>
-          <h3 class="font-bold text-base mb-2">Data Sanitization</h3>
-          <p class="text-sm leading-relaxed" style="color:var(--slate)">NIST-certified data destruction on all storage media. Multiple overwrite passes, degaussing for magnetic media, and certificate of erasure issued.</p>
-        </div>
-      </div>
-      <div class="step-card flex gap-4">
-        <div class="step-num flex-shrink-0">03</div>
-        <div>
-          <h3 class="font-bold text-base mb-2">Component Repair & Replacement</h3>
-          <p class="text-sm leading-relaxed" style="color:var(--slate)">Faulty components replaced with genuine or OEM-equivalent parts. RAM upgrades, battery replacement, thermal paste renewal, and keyboard repair.</p>
-        </div>
-      </div>
-      <div class="step-card flex gap-4">
-        <div class="step-num flex-shrink-0">04</div>
-        <div>
-          <h3 class="font-bold text-base mb-2">Deep Cleaning</h3>
-          <p class="text-sm leading-relaxed" style="color:var(--slate)">Professional ultrasonic cleaning of circuit boards, compressed air dust removal, chassis reconditioning, and screen polishing for cosmetic restoration.</p>
-        </div>
-      </div>
-      <div class="step-card flex gap-4">
-        <div class="step-num flex-shrink-0">05</div>
-        <div>
-          <h3 class="font-bold text-base mb-2">Quality Testing & Burn-in</h3>
-          <p class="text-sm leading-relaxed" style="color:var(--slate)">48-hour stress testing, performance benchmarking, temperature monitoring, and full I/O port verification. Only passing devices proceed to certification.</p>
-        </div>
-      </div>
-      <div class="step-card flex gap-4">
-        <div class="step-num flex-shrink-0">06</div>
-        <div>
-          <h3 class="font-bold text-base mb-2">Certification & Warranty</h3>
-          <p class="text-sm leading-relaxed" style="color:var(--slate)">VOZON certification label applied, 6-month warranty issued, and detailed condition report provided. Asset tagging available for inventory management.</p>
-        </div>
-      </div>
+      <div class="step-card flex gap-4"><div class="step-num flex-shrink-0">01</div><div><h3 class="font-bold text-base mb-2">Device Assessment</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">Comprehensive hardware and software diagnostic. Each device is tested for functionality, cosmetic condition, and component integrity. Assessment report generated.</p></div></div>
+      <div class="step-card flex gap-4"><div class="step-num flex-shrink-0">02</div><div><h3 class="font-bold text-base mb-2">Data Sanitization</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">NIST-certified data destruction on all storage media. Multiple overwrite passes, degaussing for magnetic media, and certificate of erasure issued.</p></div></div>
+      <div class="step-card flex gap-4"><div class="step-num flex-shrink-0">03</div><div><h3 class="font-bold text-base mb-2">Component Repair & Replacement</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">Faulty components replaced with genuine or OEM-equivalent parts. RAM upgrades, battery replacement, thermal paste renewal, and keyboard repair.</p></div></div>
+      <div class="step-card flex gap-4"><div class="step-num flex-shrink-0">04</div><div><h3 class="font-bold text-base mb-2">Deep Cleaning</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">Professional ultrasonic cleaning of circuit boards, compressed air dust removal, chassis reconditioning, and screen polishing for cosmetic restoration.</p></div></div>
+      <div class="step-card flex gap-4"><div class="step-num flex-shrink-0">05</div><div><h3 class="font-bold text-base mb-2">Quality Testing & Burn-in</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">48-hour stress testing, performance benchmarking, temperature monitoring, and full I/O port verification. Only passing devices proceed to certification.</p></div></div>
+      <div class="step-card flex gap-4"><div class="step-num flex-shrink-0">06</div><div><h3 class="font-bold text-base mb-2">Certification & Warranty</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">VOZON certification label applied, 6-month warranty issued, and detailed condition report provided. Asset tagging available for inventory management.</p></div></div>
     </div>
   </div>
 </section>
@@ -325,285 +306,48 @@
 <!-- VALUE COMPARISON -->
 <section class="py-20 px-6" style="background:var(--mist)">
   <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-12">
-      <span class="pill">ROI Calculator</span>
-      <h2 class="text-4xl font-bold mt-3">Why Refurbish vs. <span class="grad-text">Replace?</span></h2>
-      <p class="mt-3 text-sm max-w-lg mx-auto" style="color:var(--slate)">The economics of refurbishment make compelling sense for enterprise IT decisions</p>
-    </div>
+    <div class="text-center mb-12"><span class="pill">ROI Calculator</span><h2 class="text-4xl font-bold mt-3">Why Refurbish vs. <span class="grad-text">Replace?</span></h2><p class="mt-3 text-sm max-w-lg mx-auto" style="color:var(--slate)">The economics of refurbishment make compelling sense for enterprise IT decisions</p></div>
     <div class="grid lg:grid-cols-2 gap-8 items-start">
-      <div class="bg-white rounded-2xl p-8 border" style="border-color:rgba(144,204,11,0.15)">
-        <h3 class="font-bold text-lg mb-6">Cost Comparison (per 100 devices)</h3>
-        <div class="comparison-row">
-          <div class="flex-1">
-            <p class="font-semibold text-sm">New Device Purchase</p>
-            <p class="text-xs mt-0.5" style="color:var(--slate)">Avg. ₹55,000/device</p>
-          </div>
-          <div class="text-right">
-            <p class="font-bold text-red-500 text-lg">₹55L</p>
-          </div>
-        </div>
-        <div class="comparison-row">
-          <div class="flex-1">
-            <p class="font-semibold text-sm">VOZON Refurbishment</p>
-            <p class="text-xs mt-0.5" style="color:var(--slate)">Avg. ₹22,000/device</p>
-          </div>
-          <div class="text-right">
-            <p class="font-bold text-lg" style="color:var(--green)">₹22L</p>
-          </div>
-        </div>
-        <div class="comparison-row">
-          <div class="flex-1">
-            <p class="font-bold text-base">Your Savings</p>
-          </div>
-          <div class="text-right">
-            <p class="font-bold text-2xl" style="color:var(--green)">₹33L</p>
-            <p class="text-xs" style="color:var(--slate)">60% reduction</p>
-          </div>
-        </div>
-        <div class="mt-6 p-4 rounded-xl" style="background:var(--green-light)">
-          <p class="text-sm font-medium" style="color:var(--green-dark)"><i class="fas fa-info-circle mr-2"></i>Refurbished devices also qualify for CSR/ESG initiatives, providing additional reporting value for sustainability goals.</p>
-        </div>
-      </div>
-      <div class="space-y-4">
-        <div class="savings-highlight">
-          <i class="fas fa-recycle text-4xl mb-3 opacity-80"></i>
-          <p class="text-5xl font-bold mb-2">60%</p>
-          <p class="text-green-100 text-lg">Average Cost Savings</p>
-          <p class="text-green-200 text-sm mt-1">Compared to buying new equipment</p>
-        </div>
-        <div class="card-base p-5">
-          <div class="flex items-start gap-4">
-            <div class="feature-icon"><i class="fas fa-leaf"></i></div>
-            <div>
-              <h3 class="font-bold text-base mb-1">Environmental Benefit</h3>
-              <p class="text-sm leading-relaxed" style="color:var(--slate)">Refurbishing one laptop saves approximately 300 kg of CO₂ emissions compared to manufacturing a new one.</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-base p-5">
-          <div class="flex items-start gap-4">
-            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-            <div>
-              <h3 class="font-bold text-base mb-1">Asset Value Recovery</h3>
-              <p class="text-sm leading-relaxed" style="color:var(--slate)">We assess buyback value for devices in good condition. Offset costs of new purchases with returns from your old fleet.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="bg-white rounded-2xl p-8 border" style="border-color:rgba(144,204,11,0.15)"><h3 class="font-bold text-lg mb-6">Cost Comparison (per 100 devices)</h3><div class="comparison-row"><div class="flex-1"><p class="font-semibold text-sm">New Device Purchase</p><p class="text-xs mt-0.5" style="color:var(--slate)">Avg. ₹55,000/device</p></div><div class="text-right"><p class="font-bold text-red-500 text-lg">₹55L</p></div></div><div class="comparison-row"><div class="flex-1"><p class="font-semibold text-sm">VOZON Refurbishment</p><p class="text-xs mt-0.5" style="color:var(--slate)">Avg. ₹22,000/device</p></div><div class="text-right"><p class="font-bold text-lg" style="color:var(--green)">₹22L</p></div></div><div class="comparison-row"><div class="flex-1"><p class="font-bold text-base">Your Savings</p></div><div class="text-right"><p class="font-bold text-2xl" style="color:var(--green)">₹33L</p><p class="text-xs" style="color:var(--slate)">60% reduction</p></div></div><div class="mt-6 p-4 rounded-xl" style="background:var(--green-light)"><p class="text-sm font-medium" style="color:var(--green-dark)"><i class="fas fa-info-circle mr-2"></i>Refurbished devices also qualify for CSR/ESG initiatives, providing additional reporting value for sustainability goals.</p></div></div>
+      <div class="space-y-4"><div class="savings-highlight"><i class="fas fa-recycle text-4xl mb-3 opacity-80"></i><p class="text-5xl font-bold mb-2">60%</p><p class="text-green-100 text-lg">Average Cost Savings</p><p class="text-green-200 text-sm mt-1">Compared to buying new equipment</p></div><div class="card-base p-5"><div class="flex items-start gap-4"><div class="feature-icon"><i class="fas fa-leaf"></i></div><div><h3 class="font-bold text-base mb-1">Environmental Benefit</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">Refurbishing one laptop saves approximately 300 kg of CO₂ emissions compared to manufacturing a new one.</p></div></div></div><div class="card-base p-5"><div class="flex items-start gap-4"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><div><h3 class="font-bold text-base mb-1">Asset Value Recovery</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">We assess buyback value for devices in good condition. Offset costs of new purchases with returns from your old fleet.</p></div></div></div></div>
     </div>
   </div>
 </section>
 
 <!-- FEATURES -->
 <section class="py-20 px-6" style="background:white">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-12">
-      <span class="pill">What Makes Us Different</span>
-      <h2 class="text-4xl font-bold mt-3">Our Refurbishment <span class="grad-text">Edge</span></h2>
-    </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="card-base p-6">
-        <div class="feature-icon mb-4"><i class="fas fa-award"></i></div>
-        <h3 class="font-bold text-base mb-2">VOZON Certified Grade</h3>
-        <p class="text-sm leading-relaxed" style="color:var(--slate)">Each device receives an A, B, or C grade certification based on cosmetic and functional condition with full transparency.</p>
-      </div>
-      <div class="card-base p-6">
-        <div class="feature-icon mb-4"><i class="fas fa-shield-alt"></i></div>
-        <h3 class="font-bold text-base mb-2">6-Month Warranty</h3>
-        <p class="text-sm leading-relaxed" style="color:var(--slate)">Every refurbished device comes with a 6-month comprehensive warranty covering hardware defects and component failures.</p>
-      </div>
-      <div class="card-base p-6">
-        <div class="feature-icon mb-4"><i class="fas fa-tag"></i></div>
-        <h3 class="font-bold text-base mb-2">Asset Tagging</h3>
-        <p class="text-sm leading-relaxed" style="color:var(--slate)">RFID and barcode-based asset management with online tracking portal for enterprise fleet management.</p>
-      </div>
-      <div class="card-base p-6">
-        <div class="feature-icon mb-4"><i class="fas fa-exchange-alt"></i></div>
-        <h3 class="font-bold text-base mb-2">Buyback Program</h3>
-        <p class="text-sm leading-relaxed" style="color:var(--slate)">We offer buyback for devices in good condition — get direct value from your old equipment inventory.</p>
-      </div>
-      <div class="card-base p-6">
-        <div class="feature-icon mb-4"><i class="fas fa-users"></i></div>
-        <h3 class="font-bold text-base mb-2">Dedicated IT Team</h3>
-        <p class="text-sm leading-relaxed" style="color:var(--slate)">OEM-certified technicians with expertise across all major brands: Dell, HP, Lenovo, Apple, Cisco, and more.</p>
-      </div>
-      <div class="card-base p-6">
-        <div class="feature-icon mb-4"><i class="fas fa-file-alt"></i></div>
-        <h3 class="font-bold text-base mb-2">Full Audit Trail</h3>
-        <p class="text-sm leading-relaxed" style="color:var(--slate)">Complete documentation of device condition before and after refurbishment, ideal for compliance and audit purposes.</p>
-      </div>
-    </div>
-  </div>
+  <div class="max-w-7xl mx-auto"><div class="text-center mb-12"><span class="pill">What Makes Us Different</span><h2 class="text-4xl font-bold mt-3">Our Refurbishment <span class="grad-text">Edge</span></h2></div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="card-base p-6"><div class="feature-icon mb-4"><i class="fas fa-award"></i></div><h3 class="font-bold text-base mb-2">VOZON Certified Grade</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">Each device receives an A, B, or C grade certification based on cosmetic and functional condition with full transparency.</p></div>
+    <div class="card-base p-6"><div class="feature-icon mb-4"><i class="fas fa-shield-alt"></i></div><h3 class="font-bold text-base mb-2">6-Month Warranty</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">Every refurbished device comes with a 6-month comprehensive warranty covering hardware defects and component failures.</p></div>
+    <div class="card-base p-6"><div class="feature-icon mb-4"><i class="fas fa-tag"></i></div><h3 class="font-bold text-base mb-2">Asset Tagging</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">RFID and barcode-based asset management with online tracking portal for enterprise fleet management.</p></div>
+    <div class="card-base p-6"><div class="feature-icon mb-4"><i class="fas fa-exchange-alt"></i></div><h3 class="font-bold text-base mb-2">Buyback Program</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">We offer buyback for devices in good condition — get direct value from your old equipment inventory.</p></div>
+    <div class="card-base p-6"><div class="feature-icon mb-4"><i class="fas fa-users"></i></div><h3 class="font-bold text-base mb-2">Dedicated IT Team</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">OEM-certified technicians with expertise across all major brands: Dell, HP, Lenovo, Apple, Cisco, and more.</p></div>
+    <div class="card-base p-6"><div class="feature-icon mb-4"><i class="fas fa-file-alt"></i></div><h3 class="font-bold text-base mb-2">Full Audit Trail</h3><p class="text-sm leading-relaxed" style="color:var(--slate)">Complete documentation of device condition before and after refurbishment, ideal for compliance and audit purposes.</p></div>
+  </div></div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section py-20 px-6">
-  <div class="max-w-4xl mx-auto text-center">
-    <span class="pill" style="background:rgba(144,204,11,0.15);color:var(--green)">Maximize Value</span>
-    <h2 class="text-4xl md:text-5xl font-bold mt-4 text-white">Give Your Devices a <span class="grad-text">Second Life</span></h2>
-    <p class="mt-4 text-lg" style="color:rgba(255,255,255,0.7)">Don't throw away value. Let VOZON's certified technicians restore, certify, and maximize the return on your IT assets.</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-      <a href="index.html#contact" class="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white hover:-translate-y-1 transition-all" style="background:linear-gradient(135deg,var(--green-dark),var(--green));box-shadow:0 8px 24px rgba(144,204,11,0.35)">
-        <i class="fas fa-tools"></i> Get a Refurbishment Quote
-      </a>
-      <a href="tel:+918600726007" class="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold border-2 hover:-translate-y-1 transition-all" style="border-color:rgba(255,255,255,0.3);color:white">
-        <i class="fas fa-phone-alt" style="color:var(--green)"></i> +91 86007 26007
-      </a>
-    </div>
-    <div class="mt-12 pt-8" style="border-top:1px solid rgba(255,255,255,0.1)">
-      <p class="text-sm mb-4" style="color:rgba(255,255,255,0.5)">Explore our other services</p>
-      <div class="flex flex-wrap gap-3 justify-center">
-        <a href="service-collection.html" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold hover:-translate-y-0.5 transition-all" style="background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.15)"><i class="fas fa-truck" style="color:var(--green)"></i> E-Waste Collection</a>
-        <a href="service-recycling.html" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold hover:-translate-y-0.5 transition-all" style="background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.15)"><i class="fas fa-recycle" style="color:var(--green)"></i> E-Waste Recycling</a>
-      </div>
-    </div>
-  </div>
+  <div class="max-w-4xl mx-auto text-center"><span class="pill" style="background:rgba(144,204,11,0.15);color:var(--green)">Maximize Value</span><h2 class="text-4xl md:text-5xl font-bold mt-4 text-white">Give Your Devices a <span class="grad-text">Second Life</span></h2><p class="mt-4 text-lg" style="color:rgba(255,255,255,0.7)">Don't throw away value. Let VOZON's certified technicians restore, certify, and maximize the return on your IT assets.</p><div class="flex flex-col sm:flex-row gap-4 justify-center mt-8"><a href="index.html#contact" class="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white hover:-translate-y-1 transition-all" style="background:linear-gradient(135deg,var(--green-dark),var(--green));box-shadow:0 8px 24px rgba(144,204,11,0.35)"><i class="fas fa-tools"></i> Get a Refurbishment Quote</a><a href="tel:+918600726007" class="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold border-2 hover:-translate-y-1 transition-all" style="border-color:rgba(255,255,255,0.3);color:white"><i class="fas fa-phone-alt" style="color:var(--green)"></i> +91 86007 26007</a></div><div class="mt-12 pt-8" style="border-top:1px solid rgba(255,255,255,0.1)"><p class="text-sm mb-4" style="color:rgba(255,255,255,0.5)">Explore our other services</p><div class="flex flex-wrap gap-3 justify-center"><a href="service-collection.html" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold hover:-translate-y-0.5 transition-all" style="background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.15)"><i class="fas fa-truck" style="color:var(--green)"></i> E-Waste Collection</a><a href="service-recycling.html" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold hover:-translate-y-0.5 transition-all" style="background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.15)"><i class="fas fa-recycle" style="color:var(--green)"></i> E-Waste Recycling</a></div></div></div>
 </section>
 
  <!-- FOOTER -->
-<footer class="relative bg-cover bg-center bg-no-repeat"
-        style="background-image: url('/image/fbg.jpeg'); padding:3.5rem 1.5rem 2rem">
-
+<footer class="relative bg-cover bg-center bg-no-repeat" style="background-image: url('/image/fbg.jpeg'); padding:3.5rem 1.5rem 2rem">
   <div class="absolute inset-0" style="background:rgba(5,18,12,0.82)"></div>
-
   <div class="max-w-7xl mx-auto relative z-10">
-
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-8 border-b border-white/10">
-
-      <div>
-        <div class="mb-4">
-          <img src="image/Vozon-logo.png" alt="VOZON Comsoft Logo" class="h-11 w-auto object-contain">
-        </div>
-        <p class="text-gray-300 text-sm leading-relaxed font-semibold mb-5">
-          India's trusted e-waste management partner. Secure disposal, maximum recovery, and environmental responsibility since 2017.
-        </p>
-        <div class="flex gap-2">
-          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)">
-            <span class="material-icons" style="font-size:16px">facebook</span>
-          </a>
-          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)">
-            <span class="material-icons" style="font-size:16px">photo_camera</span>
-          </a>
-          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)">
-            <span class="material-icons" style="font-size:16px">work</span>
-          </a>
-          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)">
-            <span class="material-icons" style="font-size:16px">smart_display</span>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2"
-            style="font-family:'Poppins',sans-serif">
-          <span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>
-          Quick Links
-        </h4>
-        <ul class="space-y-3">
-          <li><a href="#home" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
-            <span class="material-icons text-green-500" style="font-size:14px">home</span> Home</a></li>
-          <li><a href="#about" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
-            <span class="material-icons text-green-500" style="font-size:14px">info</span> About Us</a></li>
-          <li><a href="#services" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
-            <span class="material-icons text-green-500" style="font-size:14px">miscellaneous_services</span> Services</a></li>
-          <li><a href="#process" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
-            <span class="material-icons text-green-500" style="font-size:14px">autorenew</span> Our Process</a></li>
-          <li><a href="#impact" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
-            <span class="material-icons text-green-500" style="font-size:14px">eco</span> Sustainability Impact</a></li>
-          <li><a href="#contact" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
-            <span class="material-icons text-green-500" style="font-size:14px">contact_mail</span> Contact</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2"
-            style="font-family:'Poppins',sans-serif">
-          <span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>
-          Get In Touch
-        </h4>
-        <div class="space-y-4">
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                 style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)">
-              <span class="material-icons text-green-400" style="font-size:15px">call</span>
-            </div>
-            <a href="tel:+918600726007" class="text-gray-300 font-semibold text-sm hover:text-green-400 transition mt-1">+91 86007 26007</a>
-          </div>
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                 style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)">
-              <span class="material-icons text-green-400" style="font-size:15px">mail</span>
-            </div>
-            <a href="mailto:infovozon@gmail.com" class="text-gray-300 font-semibold text-sm hover:text-green-400 transition mt-1 break-all">infovozon@gmail.com</a>
-          </div>
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                 style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)">
-              <span class="material-icons text-green-400" style="font-size:15px">location_on</span>
-            </div>
-            <span class="text-gray-300 font-semibold text-sm leading-relaxed mt-1">Sr.No. 19/9, Indira College Road,<br>Village Marunji, Tal. Mulshi, Pune</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2"
-            style="font-family:'Poppins',sans-serif">
-          <span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>
-          Business Hours
-        </h4>
-        <div class="space-y-2 mb-4">
-          <div class="flex justify-between text-sm">
-            <span class="text-gray-300 font-semibold">Monday – Saturday</span>
-            <span class="text-white font-bold">9AM – 7PM</span>
-          </div>
-          <div class="flex justify-between text-sm">
-            <span class="text-gray-300 font-semibold">Sunday</span>
-            <span class="text-gray-500 font-semibold">Closed</span>
-          </div>
-        </div>
-        <div class="flex flex-wrap gap-2 pt-2">
-          <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"
-                style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)">
-            <span class="material-icons" style="font-size:11px">verified</span> MPCB Authorized
-          </span>
-          <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"
-                style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)">
-            <span class="material-icons" style="font-size:11px">recycling</span> ISO 14001
-          </span>
-          <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"
-                style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)">
-            <span class="material-icons" style="font-size:11px">security</span> Data Security
-          </span>
-        </div>
-      </div>
+      <div><div class="mb-4"><img src="image/Vozon-logo.png" alt="VOZON Comsoft Logo" class="h-11 w-auto object-contain"></div><p class="text-gray-300 text-sm leading-relaxed font-semibold mb-5">India's trusted e-waste management partner. Secure disposal, maximum recovery, and environmental responsibility since 2017.</p><div class="flex gap-2"><a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)"><span class="material-icons" style="font-size:16px">facebook</span></a><a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)"><span class="material-icons" style="font-size:16px">photo_camera</span></a><a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)"><span class="material-icons" style="font-size:16px">work</span></a><a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)"><span class="material-icons" style="font-size:16px">smart_display</span></a></div></div>
+      <div><h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2" style="font-family:'Poppins',sans-serif"><span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>Quick Links</h4><ul class="space-y-3"><li><a href="#home" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition"><span class="material-icons text-green-500" style="font-size:14px">home</span> Home</a></li><li><a href="#about" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition"><span class="material-icons text-green-500" style="font-size:14px">info</span> About Us</a></li><li><a href="#services" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition"><span class="material-icons text-green-500" style="font-size:14px">miscellaneous_services</span> Services</a></li><li><a href="#process" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition"><span class="material-icons text-green-500" style="font-size:14px">autorenew</span> Our Process</a></li><li><a href="#impact" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition"><span class="material-icons text-green-500" style="font-size:14px">eco</span> Sustainability Impact</a></li><li><a href="#contact" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition"><span class="material-icons text-green-500" style="font-size:14px">contact_mail</span> Contact</a></li></ul></div>
+      <div><h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2" style="font-family:'Poppins',sans-serif"><span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>Get In Touch</h4><div class="space-y-4"><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)"><span class="material-icons text-green-400" style="font-size:15px">call</span></div><a href="tel:+918600726007" class="text-gray-300 font-semibold text-sm hover:text-green-400 transition mt-1">+91 86007 26007</a></div><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)"><span class="material-icons text-green-400" style="font-size:15px">mail</span></div><a href="mailto:infovozon@gmail.com" class="text-gray-300 font-semibold text-sm hover:text-green-400 transition mt-1 break-all">infovozon@gmail.com</a></div><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)"><span class="material-icons text-green-400" style="font-size:15px">location_on</span></div><span class="text-gray-300 font-semibold text-sm leading-relaxed mt-1">Sr.No. 19/9, Indira College Road,<br>Village Marunji, Tal. Mulshi, Pune</span></div></div></div>
+      <div><h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2" style="font-family:'Poppins',sans-serif"><span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>Business Hours</h4><div class="space-y-2 mb-4"><div class="flex justify-between text-sm"><span class="text-gray-300 font-semibold">Monday – Saturday</span><span class="text-white font-bold">9AM – 7PM</span></div><div class="flex justify-between text-sm"><span class="text-gray-300 font-semibold">Sunday</span><span class="text-gray-500 font-semibold">Closed</span></div></div><div class="flex flex-wrap gap-2 pt-2"><span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1" style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)"><span class="material-icons" style="font-size:11px">verified</span> MPCB Authorized</span><span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1" style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)"><span class="material-icons" style="font-size:11px">recycling</span> ISO 14001</span><span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1" style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)"><span class="material-icons" style="font-size:11px">security</span> Data Security</span></div></div>
     </div>
-
-    <div class="pt-6 flex flex-col sm:flex-row flex-wrap justify-between items-center gap-3 text-xs">
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">Privacy Policy</a>
-        <span class="text-gray-600">|</span>
-        <a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">Terms & Conditions</a>
-        <span class="text-gray-600">|</span>
-        <a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">MPCB Certificate</a>
-      </div>
-      <div class="flex items-center gap-1.5 text-gray-400 font-semibold">
-        <span class="material-icons" style="font-size:13px">copyright</span>
-        2026 VOZON Comsoft Pvt Ltd. All rights reserved.
-      </div>
-      <div class="text-gray-400 font-semibold">
-        Developed by
-        <a href="https://kunashmedia.com/" target="_blank"
-           class="text-green-400 font-bold hover:underline">Kunash Media Solutions</a>
-      </div>
-    </div>
+    <div class="pt-6 flex flex-col sm:flex-row flex-wrap justify-between items-center gap-3 text-xs"><div class="flex flex-wrap justify-center gap-4"><a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">Privacy Policy</a><span class="text-gray-600">|</span><a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">Terms & Conditions</a><span class="text-gray-600">|</span><a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">MPCB Certificate</a></div><div class="flex items-center gap-1.5 text-gray-400 font-semibold"><span class="material-icons" style="font-size:13px">copyright</span>2026 VOZON Comsoft Pvt Ltd. All rights reserved.</div><div class="text-gray-400 font-semibold">Developed by <a href="https://kunashmedia.com/" target="_blank" class="text-green-400 font-bold hover:underline">Kunash Media Solutions</a></div></div>
   </div>
 </footer>
 
-<button onclick="window.open('https://wa.me/918600726007','_blank')" class="fixed bottom-6 left-6 z-50 hover:scale-110 transition-transform"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-14 h-14"></button>
-<button id="backToTop" class="fixed bottom-6 right-6 w-14 h-14 flex items-center justify-center z-50 opacity-0 invisible hover:-translate-y-2" style="transition:all 0.3s">
-  <div style="width:44px;height:44px;background:linear-gradient(135deg,var(--green-dark),var(--green));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(144,204,11,0.4)"><i class="fas fa-arrow-up text-white text-sm"></i></div>
-</button>
+<button onclick="window.open('https://wa.me/918600726007','_blank')" class="fixed bottom-6 left-6 z-50 hover:scale-110 transition-transform"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-12 md:w-14 h-auto"></button>
+<button id="backToTop" class="fixed bottom-6 right-6 w-14 h-14 flex items-center justify-center z-50 opacity-0 invisible hover:-translate-y-2" style="transition:all 0.3s"><div style="width:44px;height:44px;background:linear-gradient(135deg,var(--green-dark),var(--green));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(144,204,11,0.4)"><i class="fas fa-arrow-up text-white text-sm"></i></div></button>
 
 <script>
   window.addEventListener('scroll',()=>{
@@ -613,8 +357,46 @@
     else{btt.style.opacity='0';btt.style.visibility='hidden';}
   });
   document.getElementById('backToTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-  document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('translate-x-full'));
-  document.getElementById('closeMenu').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('translate-x-full'));
+  
+  // Mobile Menu functionality
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const closeMenu = document.getElementById('closeMenu');
+  const overlay = document.getElementById('menuOverlay');
+  function openMobileMenu() { mobileMenu.classList.add('open'); if(overlay) overlay.classList.add('active'); document.body.classList.add('menu-open'); }
+  function closeMobileMenu() { mobileMenu.classList.remove('open'); if(overlay) overlay.classList.remove('active'); document.body.classList.remove('menu-open'); }
+  if(menuBtn) menuBtn.addEventListener('click', openMobileMenu);
+  if(closeMenu) closeMenu.addEventListener('click', closeMobileMenu);
+  if(overlay) overlay.addEventListener('click', closeMobileMenu);
+  
+  const mobileLinks = document.querySelectorAll('#mobileMenu a');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if(href && href.startsWith('#') && href !== '#') {
+        e.preventDefault();
+        closeMobileMenu();
+        const target = document.querySelector(href);
+        if(target) target.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        closeMobileMenu();
+      }
+    });
+  });
+  
+  const mobileToggle = document.getElementById('mobileServicesToggle');
+  const mobileSub = document.getElementById('mobileServicesSubmenu');
+  if(mobileToggle && mobileSub) {
+    mobileToggle.addEventListener('click', () => {
+      mobileSub.classList.toggle('hidden');
+      const icon = mobileToggle.querySelector('i');
+      if(icon) icon.classList.toggle('rotate-180');
+    });
+  }
+  
+  window.addEventListener('resize', () => {
+    if(window.innerWidth >= 1024 && mobileMenu.classList.contains('open')) closeMobileMenu();
+  });
 </script>
 </body>
 </html>

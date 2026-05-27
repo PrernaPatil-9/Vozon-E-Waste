@@ -9,8 +9,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   
   <style>
     :root {
@@ -26,8 +24,8 @@
       --accent2: #06AED5;
     }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Poppins', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { font-family: 'Poppins', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; width: 100%; }
     h1,h2,h3,h4,h5 { font-family: 'Poppins', sans-serif; font-weight: 700; }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--mist); }
@@ -43,13 +41,13 @@
     .card-base:hover { border-color: var(--green); box-shadow: 0 20px 48px rgba(144,204,11,0.14), 0 2px 8px rgba(0,0,0,0.04); transform: translateY(-6px); }
    
     /* Dropdown styles */
-.dropdown{position:relative}
-.dropdown-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) scaleY(0);transform-origin:top;background:white;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.12),0 0 0 1px rgba(144,204,11,0.15);min-width:220px;padding:10px;transition:all 0.25s cubic-bezier(0.23,1,0.32,1);opacity:0;pointer-events:none;z-index:100}
-.dropdown:hover .dropdown-menu{transform:translateX(-50%) scaleY(1);opacity:1;pointer-events:all}
-.dropdown-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;color:var(--ink-soft);font-size:0.82rem;font-weight:500;transition:all 0.2s;text-decoration:none}
-.dropdown-item:hover{background:var(--green-light);color:var(--green-dark)}
-.dropdown-item.active-page{background:var(--green-light);color:var(--green-dark);font-weight:700}
-.dropdown-item i{width:16px;color:var(--green)}
+    .dropdown{position:relative}
+    .dropdown-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) scaleY(0);transform-origin:top;background:white;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.12),0 0 0 1px rgba(144,204,11,0.15);min-width:220px;padding:10px;transition:all 0.25s cubic-bezier(0.23,1,0.32,1);opacity:0;pointer-events:none;z-index:100}
+    .dropdown:hover .dropdown-menu{transform:translateX(-50%) scaleY(1);opacity:1;pointer-events:all}
+    .dropdown-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;color:var(--ink-soft);font-size:0.82rem;font-weight:500;transition:all 0.2s;text-decoration:none}
+    .dropdown-item:hover{background:var(--green-light);color:var(--green-dark)}
+    .dropdown-item.active-page{background:var(--green-light);color:var(--green-dark);font-weight:700}
+    .dropdown-item i{width:16px;color:var(--green)}
 
     /* Hero */
     .hero-service { background: linear-gradient(135deg, #F8FCEF 0%, #F0F8E6 50%, #F0F9FF 100%); position: relative; overflow: hidden; }
@@ -77,17 +75,48 @@
     .float-badge { animation: floatBadge 3s ease-in-out infinite; }
     @keyframes blobFloat { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(20px,-20px) scale(1.03)} 66%{transform:translate(-15px,10px) scale(0.97)} }
     .blob-anim { animation: blobFloat 12s ease-in-out infinite; }
+    
+    /* Mobile Menu Fixes - fully responsive */
+    #mobileMenu {
+      position: fixed; top: 0; right: 0; height: 100%; width: 85%; max-width: 320px;
+      background: white; box-shadow: -2px 0 30px rgba(0,0,0,0.15); z-index: 1000;
+      transform: translateX(100%); transition: transform 0.3s ease-in-out;
+      overflow-y: auto; padding: 1.25rem; display: flex; flex-direction: column; gap: 1.25rem;
+    }
+    #mobileMenu.open { transform: translateX(0); }
+    body.menu-open { overflow: hidden; position: fixed; width: 100%; height: 100%; }
+    #menuOverlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); z-index: 999; opacity: 0; visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+    #menuOverlay.active { opacity: 1; visibility: visible; }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .step-card { padding: 20px; }
+      .stat-card { padding: 20px; }
+      .stat-num { font-size: 1.8rem; }
+      .waste-pill { font-size: 0.7rem; padding: 5px 12px; }
+      .feature-icon { width: 48px; height: 48px; font-size: 1.1rem; }
+      .hero-service { padding-top: 2rem; }
+      .breadcrumb-wrap { padding-top: 5rem; }
+    }
+    @media (max-width: 480px) {
+      .step-num { width: 40px; height: 40px; font-size: 0.85rem; }
+      .stat-num { font-size: 1.5rem; }
+    }
   </style>
 </head>
 <body>
 
 <div class="scroll-progress" id="progressBar"></div>
+<div id="menuOverlay"></div>
 
-<!-- NAVBAR -->
-<nav id="navbar" class="py-4 px-6 md:px-12 fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-[#8BB500]/10">
+<!-- NAVBAR (fully responsive hamburger integrated) -->
+<nav id="navbar" class="py-3 md:py-4 px-4 md:px-8 lg:px-12 fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-[#8BB500]/10">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
-    <a href="index.html" class="flex items-center gap-3">
-      <img src="image/Vozon-logo.png" alt="VOZON" class="h-11 md:h-12 w-auto object-contain" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <a href="index.html" class="flex items-center gap-2 md:gap-3 flex-shrink-0">
+      <img src="image/Vozon-logo.png" alt="VOZON" class="h-8 md:h-11 w-auto object-contain" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div style="display:none;align-items:center;gap:8px">
         <div style="width:36px;height:36px;background:#8BB500;border-radius:10px;display:flex;align-items:center;justify-content:center">
           <i class="fas fa-recycle text-white"></i>
@@ -97,7 +126,7 @@
     </a>
     
     <!-- Desktop Menu -->
-    <div class="hidden md:flex space-x-8 text-sm items-center">
+    <div class="hidden lg:flex space-x-6 xl:space-x-8 text-sm items-center">
       <a href="index.html" class="text-[#1A1A1A] hover:text-[#8BB500] transition-colors font-medium">Home</a>
       <a href="index.html#about" class="text-[#1A1A1A] hover:text-[#8BB500] transition-colors font-medium">About</a>
       
@@ -134,37 +163,52 @@
       <a href="index.html#contact" class="text-[#1A1A1A] hover:text-[#8BB500] transition-colors font-medium">Contact</a>
     </div>
     
-    <div class="hidden md:flex items-center gap-3">
-      <a href="tel:+918600726007" class="text-sm font-medium text-[#1A1A1A] hover:text-[#8BB500] transition-colors">
+    <div class="hidden lg:flex items-center gap-3">
+      <a href="tel:+918600726007" class="text-sm font-medium text-[#1A1A1A] hover:text-[#8BB500] transition-colors whitespace-nowrap">
         <i class="fas fa-phone-alt mr-1 text-[#8BB500]"></i>+91 86007 26007
       </a>
-      <a href="index.html#contact" class="px-6 py-2.5 rounded-xl text-sm font-bold text-white bg-[#8BB500] hover:bg-[#6F8F00] hover:-translate-y-0.5 transition-all shadow-lg shadow-[#8BB500]/30">
+      <a href="index.html#contact" class="px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-[#8BB500] hover:bg-[#6F8F00] hover:-translate-y-0.5 transition-all shadow-lg shadow-[#8BB500]/30 whitespace-nowrap">
         Get Quote →
       </a>
     </div>
     
-    <button id="menuBtn" class="md:hidden text-2xl text-[#1A1A1A]"><i class="fas fa-bars"></i></button>
-  </div>
-  
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 p-7 flex flex-col gap-5 overflow-y-auto">
-    <button id="closeMenu" class="self-end text-2xl text-[#1A1A1A]"><i class="fas fa-times"></i></button>
-    <a href="index.html" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">Home</a>
-    <a href="index.html#about" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">About</a>
-    <div>
-      <p class="text-lg font-semibold text-[#8BB500] mb-2">Services</p>
-      <div class="pl-4 flex flex-col gap-2">
-        <a href="service-collection.html" class="text-sm font-bold text-[#8BB500]">→ E-Waste Collection</a>
-        <a href="service-recycling.html" class="text-sm font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">→ E-Waste Recycling</a>
-        <a href="service-refurbishment.html" class="text-sm font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">→ Refurbishment</a>
-      </div>
-    </div>
-    <a href="index.html#process" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">Process</a>
-    <a href="index.html#impact" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">Impact</a>
-    <a href="index.html#contact" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] transition">Contact</a>
-    <a href="index.html#contact" class="py-3 rounded-xl text-center font-bold text-white bg-[#8BB500] hover:bg-[#6F8F00] transition">Get Quote</a>
+    <!-- Hamburger Button (responsive) -->
+    <button id="menuBtn" class="lg:hidden text-2xl text-[#1A1A1A] focus:outline-none z-[1001] w-10 h-10 flex items-center justify-center" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile Menu (fixed and responsive) -->
+<div id="mobileMenu">
+  <div class="flex justify-end">
+    <button id="closeMenu" class="text-2xl text-[#1A1A1A] w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="flex flex-col gap-4">
+    <a href="index.html" class="text-lg font-semibold text-[#8BB500] py-2 border-b border-gray-100">Home</a>
+    <a href="index.html#about" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] py-2 border-b border-gray-100">About</a>
+    <div class="py-2 border-b border-gray-100">
+      <div class="flex items-center justify-between cursor-pointer" id="mobileServicesToggle">
+        <span class="text-lg font-semibold text-[#1A1A1A]">Services</span>
+        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+      </div>
+      <div id="mobileServicesSubmenu" class="hidden pl-4 flex flex-col gap-3 mt-3">
+        <a href="service-collection.html" class="text-base font-bold text-[#8BB500] flex items-center gap-2"><i class="fas fa-truck text-[#8BB500] text-sm w-5"></i> E-Waste Collection</a>
+        <a href="service-recycling.html" class="text-base font-medium text-[#1A1A1A] hover:text-[#8BB500] flex items-center gap-2"><i class="fas fa-recycle text-[#8BB500] text-sm w-5"></i> E-Waste Recycling</a>
+        <a href="service-refurbishment.html" class="text-base font-medium text-[#1A1A1A] hover:text-[#8BB500] flex items-center gap-2"><i class="fas fa-microchip text-[#8BB500] text-sm w-5"></i> Refurbishment</a>
+      </div>
+    </div>
+    <a href="index.html#process" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] py-2 border-b border-gray-100">Process</a>
+    <a href="index.html#impact" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] py-2 border-b border-gray-100">Impact</a>
+    <a href="index.html#contact" class="text-lg font-semibold text-[#1A1A1A] hover:text-[#8BB500] py-2 border-b border-gray-100">Contact</a>
+    <div class="pt-3">
+      <a href="tel:+918600726007" class="flex items-center gap-3 py-3 text-base font-medium text-[#1A1A1A] hover:text-[#8BB500]"><i class="fas fa-phone-alt text-[#8BB500]"></i> +91 86007 26007</a>
+      <a href="index.html#contact" class="mt-4 w-full py-3 rounded-xl text-center font-bold text-white bg-[#8BB500] hover:bg-[#6F8F00] transition block shadow-md">Get Quote <i class="fas fa-arrow-right ml-1"></i></a>
+    </div>
+  </div>
+</div>
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb-wrap pt-24 pb-3 px-6">
@@ -187,10 +231,10 @@
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       <div>
         <div class="pill mb-5"><span>●</span> Service 01 — Collection</div>
-        <h1 class="text-5xl md:text-6xl font-bold leading-tight">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
           E-Waste<br><span class="grad-text">Collection</span><br>Services
         </h1>
-        <p class="mt-5 text-lg leading-relaxed max-w-md" style="color:var(--slate)">Scheduled, GPS-tracked doorstep collection of electronic waste for businesses, IT parks, and institutions across Pune — with full compliance documentation.</p>
+        <p class="mt-5 text-base md:text-lg leading-relaxed max-w-md" style="color:var(--slate)">Scheduled, GPS-tracked doorstep collection of electronic waste for businesses, IT parks, and institutions across Pune — with full compliance documentation.</p>
         <div class="flex flex-wrap gap-3 mt-8">
           <a href="index.html#contact" class="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white text-sm transition-all hover:-translate-y-0.5" style="background:linear-gradient(135deg,var(--green-dark),var(--green));box-shadow:0 6px 20px rgba(144,204,11,0.3)">
             <i class="fas fa-calendar-check"></i> Schedule Pickup
@@ -217,7 +261,6 @@
             </div>
           </div>
         </div>
-        <!-- Floating badges -->
         <div class="float-badge absolute -left-6 top-16 bg-white rounded-2xl p-4 shadow-xl border" style="border-color:rgba(144,204,11,0.2)">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:var(--green-light)">
@@ -404,7 +447,6 @@
         <i class="fas fa-phone-alt" style="color:var(--green)"></i> +91 86007 26007
       </a>
     </div>
-    <!-- Other services -->
     <div class="mt-12 pt-8" style="border-top:1px solid rgba(255,255,255,0.1)">
       <p class="text-sm mb-4" style="color:rgba(255,255,255,0.5)">Explore our other services</p>
       <div class="flex flex-wrap gap-3 justify-center">
@@ -422,166 +464,122 @@
  <!-- FOOTER -->
 <footer class="relative bg-cover bg-center bg-no-repeat"
         style="background-image: url('/image/fbg.jpeg'); padding:3.5rem 1.5rem 2rem">
-
   <div class="absolute inset-0" style="background:rgba(5,18,12,0.82)"></div>
-
   <div class="max-w-7xl mx-auto relative z-10">
-
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-8 border-b border-white/10">
-
       <div>
         <div class="mb-4">
           <img src="image/Vozon-logo.png" alt="VOZON Comsoft Logo" class="h-11 w-auto object-contain">
         </div>
-        <p class="text-gray-300 text-sm leading-relaxed font-semibold mb-5">
-          India's trusted e-waste management partner. Secure disposal, maximum recovery, and environmental responsibility since 2017.
-        </p>
+        <p class="text-gray-300 text-sm leading-relaxed font-semibold mb-5">India's trusted e-waste management partner. Secure disposal, maximum recovery, and environmental responsibility since 2017.</p>
         <div class="flex gap-2">
-          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)">
-            <span class="material-icons" style="font-size:16px">facebook</span>
-          </a>
-          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)">
-            <span class="material-icons" style="font-size:16px">photo_camera</span>
-          </a>
-          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)">
-            <span class="material-icons" style="font-size:16px">work</span>
-          </a>
-          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)">
-            <span class="material-icons" style="font-size:16px">smart_display</span>
-          </a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)"><span class="material-icons" style="font-size:16px">facebook</span></a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)"><span class="material-icons" style="font-size:16px">photo_camera</span></a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)"><span class="material-icons" style="font-size:16px">work</span></a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition-all duration-300" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)"><span class="material-icons" style="font-size:16px">smart_display</span></a>
         </div>
       </div>
-
       <div>
-        <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2"
-            style="font-family:'Poppins',sans-serif">
-          <span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>
-          Quick Links
-        </h4>
+        <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2" style="font-family:'Poppins',sans-serif"><span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>Quick Links</h4>
         <ul class="space-y-3">
-          <li><a href="#home" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
-            <span class="material-icons text-green-500" style="font-size:14px">home</span> Home</a></li>
-          <li><a href="#about" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
-            <span class="material-icons text-green-500" style="font-size:14px">info</span> About Us</a></li>
-          <li><a href="#services" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
-            <span class="material-icons text-green-500" style="font-size:14px">miscellaneous_services</span> Services</a></li>
-          <li><a href="#process" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
-            <span class="material-icons text-green-500" style="font-size:14px">autorenew</span> Our Process</a></li>
-          <li><a href="#impact" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
-            <span class="material-icons text-green-500" style="font-size:14px">eco</span> Sustainability Impact</a></li>
-          <li><a href="#contact" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition">
-            <span class="material-icons text-green-500" style="font-size:14px">contact_mail</span> Contact</a></li>
+          <li><a href="#home" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition"><span class="material-icons text-green-500" style="font-size:14px">home</span> Home</a></li>
+          <li><a href="#about" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition"><span class="material-icons text-green-500" style="font-size:14px">info</span> About Us</a></li>
+          <li><a href="#services" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition"><span class="material-icons text-green-500" style="font-size:14px">miscellaneous_services</span> Services</a></li>
+          <li><a href="#process" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition"><span class="material-icons text-green-500" style="font-size:14px">autorenew</span> Our Process</a></li>
+          <li><a href="#impact" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition"><span class="material-icons text-green-500" style="font-size:14px">eco</span> Sustainability Impact</a></li>
+          <li><a href="#contact" class="flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-green-400 transition"><span class="material-icons text-green-500" style="font-size:14px">contact_mail</span> Contact</a></li>
         </ul>
       </div>
-
       <div>
-        <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2"
-            style="font-family:'Poppins',sans-serif">
-          <span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>
-          Get In Touch
-        </h4>
+        <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2" style="font-family:'Poppins',sans-serif"><span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>Get In Touch</h4>
         <div class="space-y-4">
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                 style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)">
-              <span class="material-icons text-green-400" style="font-size:15px">call</span>
-            </div>
-            <a href="tel:+918600726007" class="text-gray-300 font-semibold text-sm hover:text-green-400 transition mt-1">+91 86007 26007</a>
-          </div>
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                 style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)">
-              <span class="material-icons text-green-400" style="font-size:15px">mail</span>
-            </div>
-            <a href="mailto:infovozon@gmail.com" class="text-gray-300 font-semibold text-sm hover:text-green-400 transition mt-1 break-all">infovozon@gmail.com</a>
-          </div>
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                 style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)">
-              <span class="material-icons text-green-400" style="font-size:15px">location_on</span>
-            </div>
-            <span class="text-gray-300 font-semibold text-sm leading-relaxed mt-1">Sr.No. 19/9, Indira College Road,<br>Village Marunji, Tal. Mulshi, Pune</span>
-          </div>
+          <div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)"><span class="material-icons text-green-400" style="font-size:15px">call</span></div><a href="tel:+918600726007" class="text-gray-300 font-semibold text-sm hover:text-green-400 transition mt-1">+91 86007 26007</a></div>
+          <div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)"><span class="material-icons text-green-400" style="font-size:15px">mail</span></div><a href="mailto:infovozon@gmail.com" class="text-gray-300 font-semibold text-sm hover:text-green-400 transition mt-1 break-all">infovozon@gmail.com</a></div>
+          <div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(144,204,11,0.12);border:1px solid rgba(144,204,11,0.2)"><span class="material-icons text-green-400" style="font-size:15px">location_on</span></div><span class="text-gray-300 font-semibold text-sm leading-relaxed mt-1">Sr.No. 19/9, Indira College Road,<br>Village Marunji, Tal. Mulshi, Pune</span></div>
         </div>
       </div>
-
       <div>
-        <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2"
-            style="font-family:'Poppins',sans-serif">
-          <span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>
-          Business Hours
-        </h4>
-        <div class="space-y-2 mb-4">
-          <div class="flex justify-between text-sm">
-            <span class="text-gray-300 font-semibold">Monday – Saturday</span>
-            <span class="text-white font-bold">9AM – 7PM</span>
-          </div>
-          <div class="flex justify-between text-sm">
-            <span class="text-gray-300 font-semibold">Sunday</span>
-            <span class="text-gray-500 font-semibold">Closed</span>
-          </div>
-        </div>
+        <h4 class="text-white font-extrabold text-xs uppercase tracking-widest mb-5 flex items-center gap-2" style="font-family:'Poppins',sans-serif"><span class="w-0.5 h-5 rounded-full" style="background:var(--green)"></span>Business Hours</h4>
+        <div class="space-y-2 mb-4"><div class="flex justify-between text-sm"><span class="text-gray-300 font-semibold">Monday – Saturday</span><span class="text-white font-bold">9AM – 7PM</span></div><div class="flex justify-between text-sm"><span class="text-gray-300 font-semibold">Sunday</span><span class="text-gray-500 font-semibold">Closed</span></div></div>
         <div class="flex flex-wrap gap-2 pt-2">
-          <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"
-                style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)">
-            <span class="material-icons" style="font-size:11px">verified</span> MPCB Authorized
-          </span>
-          <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"
-                style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)">
-            <span class="material-icons" style="font-size:11px">recycling</span> ISO 14001
-          </span>
-          <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"
-                style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)">
-            <span class="material-icons" style="font-size:11px">security</span> Data Security
-          </span>
+          <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1" style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)"><span class="material-icons" style="font-size:11px">verified</span> MPCB Authorized</span>
+          <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1" style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)"><span class="material-icons" style="font-size:11px">recycling</span> ISO 14001</span>
+          <span class="text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1" style="background:rgba(144,204,11,0.1);color:#6ee7b7;border:1px solid rgba(144,204,11,0.2)"><span class="material-icons" style="font-size:11px">security</span> Data Security</span>
         </div>
       </div>
     </div>
-
     <div class="pt-6 flex flex-col sm:flex-row flex-wrap justify-between items-center gap-3 text-xs">
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">Privacy Policy</a>
-        <span class="text-gray-600">|</span>
-        <a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">Terms & Conditions</a>
-        <span class="text-gray-600">|</span>
-        <a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">MPCB Certificate</a>
-      </div>
-      <div class="flex items-center gap-1.5 text-gray-400 font-semibold">
-        <span class="material-icons" style="font-size:13px">copyright</span>
-        2026 VOZON Comsoft Pvt Ltd. All rights reserved.
-      </div>
-      <div class="text-gray-400 font-semibold">
-        Developed by
-        <a href="https://kunashmedia.com/" target="_blank"
-           class="text-green-400 font-bold hover:underline">Kunash Media Solutions</a>
-      </div>
+      <div class="flex flex-wrap justify-center gap-4"><a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">Privacy Policy</a><span class="text-gray-600">|</span><a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">Terms & Conditions</a><span class="text-gray-600">|</span><a href="#" class="text-gray-400 font-semibold hover:text-green-400 transition">MPCB Certificate</a></div>
+      <div class="flex items-center gap-1.5 text-gray-400 font-semibold"><span class="material-icons" style="font-size:13px">copyright</span>2026 VOZON Comsoft Pvt Ltd. All rights reserved.</div>
+      <div class="text-gray-400 font-semibold">Developed by <a href="https://kunashmedia.com/" target="_blank" class="text-green-400 font-bold hover:underline">Kunash Media Solutions</a></div>
     </div>
   </div>
 </footer>
 
 <!-- WhatsApp -->
-<button onclick="window.open('https://wa.me/918600726007','_blank')" class="fixed bottom-6 left-6 z-50 hover:scale-110 transition-transform">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-14 h-14">
-</button>
+<button onclick="window.open('https://wa.me/918600726007','_blank')" class="fixed bottom-6 left-6 z-50 hover:scale-110 transition-transform"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-12 md:w-14 h-auto"></button>
 <!-- Back to Top -->
-<button id="backToTop" class="fixed bottom-6 right-6 w-14 h-14 flex items-center justify-center z-50 opacity-0 invisible transition-all hover:-translate-y-2" style="transition:all 0.3s">
-  <div style="width:44px;height:44px;background:linear-gradient(135deg,var(--green-dark),var(--green));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(144,204,11,0.4)">
-    <i class="fas fa-arrow-up text-white text-sm"></i>
-  </div>
-</button>
+<button id="backToTop" class="fixed bottom-6 right-6 w-14 h-14 flex items-center justify-center z-50 opacity-0 invisible transition-all hover:-translate-y-2" style="transition:all 0.3s"><div style="width:44px;height:44px;background:linear-gradient(135deg,var(--green-dark),var(--green));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(144,204,11,0.4)"><i class="fas fa-arrow-up text-white text-sm"></i></div></button>
 
 <script>
-  // Navbar scroll
+  // Navbar scroll and progress
   window.addEventListener('scroll', () => {
-    document.getElementById('progressBar').style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('progressBar').style.width = scrolled + '%';
     const btt = document.getElementById('backToTop');
     if (window.scrollY > 500) { btt.style.opacity = '1'; btt.style.visibility = 'visible'; }
     else { btt.style.opacity = '0'; btt.style.visibility = 'hidden'; }
   });
   document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  // Mobile menu
-  document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('translate-x-full'));
-  document.getElementById('closeMenu').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('translate-x-full'));
+  
+  // Mobile Menu Functionality
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const closeMenu = document.getElementById('closeMenu');
+  const overlay = document.getElementById('menuOverlay');
+  
+  function openMobileMenu() { mobileMenu.classList.add('open'); overlay.classList.add('active'); document.body.classList.add('menu-open'); }
+  function closeMobileMenu() { mobileMenu.classList.remove('open'); overlay.classList.remove('active'); document.body.classList.remove('menu-open'); }
+  
+  if(menuBtn) menuBtn.addEventListener('click', openMobileMenu);
+  if(closeMenu) closeMenu.addEventListener('click', closeMobileMenu);
+  if(overlay) overlay.addEventListener('click', closeMobileMenu);
+  
+  // Close mobile menu when clicking on any anchor link inside
+  const mobileLinks = document.querySelectorAll('#mobileMenu a');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if(href && href.startsWith('#') && href !== '#') {
+        e.preventDefault();
+        closeMobileMenu();
+        const target = document.querySelector(href);
+        if(target) target.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        closeMobileMenu();
+      }
+    });
+  });
+  
+  // Mobile services dropdown toggle
+  const mobileToggle = document.getElementById('mobileServicesToggle');
+  const mobileSub = document.getElementById('mobileServicesSubmenu');
+  if(mobileToggle && mobileSub) {
+    mobileToggle.addEventListener('click', () => {
+      mobileSub.classList.toggle('hidden');
+      const icon = mobileToggle.querySelector('i');
+      if(icon) icon.classList.toggle('rotate-180');
+    });
+  }
+  
+  // Fix for any potential responsive issues
+  window.addEventListener('resize', () => {
+    if(window.innerWidth >= 1024) {
+      if(mobileMenu.classList.contains('open')) closeMobileMenu();
+    }
+  });
 </script>
 </body>
 </html>
